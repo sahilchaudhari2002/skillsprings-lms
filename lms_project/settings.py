@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv(
 )
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "courses",
