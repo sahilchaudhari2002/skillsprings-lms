@@ -53,12 +53,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lms_project.wsgi.application"
 
+
+import dj_database_url
+import os
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.parse(
+        os.environ.get("postgresql://skillsprings_user:dxrpYJnhYsvTnjEBejp09V5jQpFFMMyi@dpg-d88lpk0jo6nc73d1t6hg-a/skillsprings")
+    )
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
