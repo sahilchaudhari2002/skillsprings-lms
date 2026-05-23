@@ -1,0 +1,470 @@
+ 
+<!-- =========================
+     PREMIUM NAVBAR
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+
+/* ================= NAVBAR ================= */
+
+.premium-navbar{
+
+    background:
+    rgba(8,12,30,.82);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+    padding:16px 0;
+
+    z-index:9999;
+}
+
+.logo-box{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:800;
+
+    color:white;
+
+    font-size:20px;
+}
+
+.logo-text{
+
+    font-size:1.6rem;
+
+    font-weight:800;
+
+    color:white;
+}
+
+.nav-link{
+
+    color:
+    rgba(255,255,255,.75) !important;
+
+    font-weight:500;
+
+    transition:.3s;
+
+    position:relative;
+}
+
+.nav-link:hover{
+
+    color:white !important;
+
+    transform:translateY(-2px);
+}
+
+.nav-link.active{
+
+    color:#10b981 !important;
+}
+
+.nav-link::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:2px;
+
+    background:#10b981;
+
+    transition:.3s;
+}
+
+.nav-link:hover::after{
+
+    width:100%;
+}
+
+/* ================= BUTTONS ================= */
+
+.profile-btn{
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    border-radius:50px;
+
+    padding:10px 24px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.profile-btn:hover{
+
+    background:
+    rgba(255,255,255,.14);
+
+    color:white;
+}
+
+.premium-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:700;
+
+    border-radius:50px;
+
+    padding:10px 24px;
+
+    transition:.3s;
+}
+
+.premium-btn:hover{
+
+    color:white;
+
+    transform:translateY(-2px);
+}
+
+/* ================= DROPDOWN ================= */
+
+.profile-dropdown{
+
+    background:#0f172a;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:10px;
+
+    min-width:220px;
+}
+
+.dropdown-item{
+
+    color:white;
+
+    border-radius:12px;
+
+    padding:10px 14px;
+
+    transition:.3s;
+}
+
+.dropdown-item:hover{
+
+    background:
+    rgba(255,255,255,.08);
+
+    color:#10b981;
+}
+
+.dropdown-divider{
+
+    border-color:
+    rgba(255,255,255,.08);
+}
+
+/* ================= MOBILE ================= */
+
+.navbar-toggler{
+
+    border:none !important;
+
+    box-shadow:none !important;
+}
+
+@media(max-width:991px){
+
+    .navbar-nav{
+
+        text-align:center;
+
+        margin-top:20px;
+    }
+
+    .nav-item{
+
+        margin-bottom:12px;
+    }
+
+    .profile-btn{
+
+        width:100%;
+    }
+
+    .logo-text{
+
+        font-size:1.4rem;
+    }
+}
+
+</style>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top premium-navbar">
+
+    <div class="container">
+
+        <!-- LOGO -->
+
+        <a
+            class="navbar-brand d-flex align-items-center"
+            href="/"
+        >
+
+            <div class="logo-box">
+
+                ✦
+
+            </div>
+
+            <span class="logo-text ms-3">
+
+                SkillSprings
+
+            </span>
+
+        </a>
+
+        <!-- MOBILE BUTTON -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- MENU -->
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
+            <ul class="navbar-nav mx-auto gap-lg-4 mt-4 mt-lg-0">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/#courses">
+
+                        Courses
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/about/">
+
+                        About
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/contact/">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/faq/">
+
+                        FAQ
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/privacy-policy/">
+
+                        Privacy
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- LOGIN / USER -->
+
+            {% if user.is_authenticated %}
+
+            <div class="dropdown mt-4 mt-lg-0">
+
+                <button
+                    class="btn profile-btn dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+
+                    👋 {{ user.username }}
+
+                </button>
+
+                <ul
+                    class="dropdown-menu dropdown-menu-end profile-dropdown"
+                >
+
+                    <li>
+
+                        <a
+                            class="dropdown-item"
+                            href="/dashboard/"
+                        >
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    {% if user.is_superuser %}
+
+                    <li>
+
+                        <a
+                            class="dropdown-item"
+                            href="/admin/"
+                        >
+
+                            Django Admin
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+                    <li>
+
+                        <hr class="dropdown-divider">
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            class="dropdown-item text-danger"
+                            href="/accounts/logout/"
+                        >
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            {% else %}
+
+            <div class="d-flex gap-3 mt-4 mt-lg-0">
+
+                <a
+                    href="/login/"
+                    class="btn btn-outline-light rounded-pill px-4"
+                >
+
+                    Login
+
+                </a>
+
+                <a
+                    href="/register/"
+                    class="btn premium-btn"
+                >
+
+                    Register
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= BOOTSTRAP JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 

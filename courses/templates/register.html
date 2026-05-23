@@ -1,0 +1,591 @@
+```html id="9mfjrp"
+{% extends "base.html" %}
+
+{% block title %}
+Register | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="register-page">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <div class="container-fluid px-lg-5 px-3">
+
+        <div class="row min-vh-100 align-items-center">
+
+            <!-- LEFT SIDE -->
+
+            <div class="col-lg-6 d-none d-lg-block">
+
+                <div class="hero-side">
+
+                    <div class="premium-badge">
+
+                        🚀 Join SkillSprings Today
+
+                    </div>
+
+                    <h1 class="hero-title mt-4">
+
+                        Build Your
+                        Future With
+                        Premium Learning
+
+                    </h1>
+
+                    <p class="hero-text mt-4">
+
+                        Create your account and unlock
+                        premium video courses,
+                        certifications,
+                        quizzes,
+                        and career-ready skills.
+
+                    </p>
+
+                    <!-- FLOATING CARDS -->
+
+                    <div class="floating-card card-1">
+
+                        <i class="bi bi-award-fill"></i>
+
+                        <div>
+                            <strong>Certificates</strong>
+                            <p>Verified Learning</p>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-card card-2">
+
+                        <i class="bi bi-play-circle-fill"></i>
+
+                        <div>
+                            <strong>Premium Videos</strong>
+                            <p>Industry Courses</p>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-card card-3">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        <div>
+                            <strong>Career Growth</strong>
+                            <p>Future Skills</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div class="col-lg-6">
+
+                <div class="register-wrapper">
+
+                    <div class="register-card">
+
+                        <!-- LOGO -->
+
+                        <div class="logo-wrapper">
+
+                            <div class="logo-box">
+
+                                <i class="bi bi-mortarboard-fill"></i>
+
+                            </div>
+
+                        </div>
+
+                        <h2 class="register-title">
+
+                            Create Account
+
+                        </h2>
+
+                        <p class="register-subtitle">
+
+                            Start your premium learning journey today
+
+                        </p>
+
+                        <!-- FORM -->
+
+                        <form method="post">
+
+                            {% csrf_token %}
+
+                            <!-- USERNAME -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                </span>
+
+                                <input type="text"
+                                       name="username"
+                                       class="premium-input"
+                                       placeholder="Enter username"
+                                       required>
+
+                            </div>
+
+                            <!-- EMAIL -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-envelope-fill"></i>
+
+                                </span>
+
+                                <input type="email"
+                                       name="email"
+                                       class="premium-input"
+                                       placeholder="Enter email address"
+                                       required>
+
+                            </div>
+
+                            <!-- PASSWORD -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-lock-fill"></i>
+
+                                </span>
+
+                                <input type="password"
+                                       name="password1"
+                                       class="premium-input"
+                                       placeholder="Create password"
+                                       required>
+
+                            </div>
+
+                            <!-- CONFIRM PASSWORD -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-shield-lock-fill"></i>
+
+                                </span>
+
+                                <input type="password"
+                                       name="password2"
+                                       class="premium-input"
+                                       placeholder="Confirm password"
+                                       required>
+
+                            </div>
+
+                            <!-- BUTTON -->
+
+                            <button class="btn premium-register-btn w-100">
+
+                                Create Account
+
+                            </button>
+
+                        </form>
+
+                        <!-- LOGIN -->
+
+                        <div class="login-text">
+
+                            Already have an account?
+
+                            <a href="{% url 'login' %}">
+
+                                Login Now
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+body{
+    background:#050816;
+    overflow-x:hidden;
+    font-family:'Segoe UI';
+}
+
+/* PAGE */
+
+.register-page{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#065f46 0%,transparent 30%),
+    linear-gradient(135deg,#050816,#0f172a);
+}
+
+/* GLOW */
+
+.bg-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.22;
+}
+
+.glow-1{
+    width:400px;
+    height:400px;
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.glow-2{
+    width:350px;
+    height:350px;
+    background:#10b981;
+    bottom:-100px;
+    right:-100px;
+}
+
+.glow-3{
+    width:250px;
+    height:250px;
+    background:#8b5cf6;
+    top:40%;
+    left:40%;
+}
+
+/* HERO */
+
+.hero-side{
+    position:relative;
+    padding-right:60px;
+}
+
+.premium-badge{
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    backdrop-filter:blur(10px);
+}
+
+.hero-title{
+    font-size:5rem;
+    font-weight:900;
+    line-height:1.1;
+    color:white;
+}
+
+.hero-text{
+    color:rgba(255,255,255,.7);
+    font-size:1.2rem;
+    line-height:1.8;
+}
+
+/* FLOATING CARDS */
+
+.floating-card{
+    position:absolute;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    padding:18px 22px;
+
+    border-radius:24px;
+
+    color:white;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+}
+
+.floating-card i{
+    font-size:1.5rem;
+    color:#60a5fa;
+}
+
+.floating-card p{
+    margin:0;
+    color:rgba(255,255,255,.7);
+}
+
+.card-1{
+    top:120px;
+    right:40px;
+}
+
+.card-2{
+    top:280px;
+    left:40px;
+}
+
+.card-3{
+    bottom:80px;
+    right:100px;
+}
+
+/* REGISTER CARD */
+
+.register-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.register-card{
+    width:100%;
+    max-width:540px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    border-radius:40px;
+
+    padding:50px;
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.35);
+}
+
+/* LOGO */
+
+.logo-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.logo-box{
+    width:90px;
+    height:90px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:2rem;
+
+    box-shadow:
+    0 20px 50px rgba(59,130,246,.35);
+}
+
+/* TEXT */
+
+.register-title{
+    text-align:center;
+    color:white;
+    font-size:2.7rem;
+    font-weight:900;
+}
+
+.register-subtitle{
+    text-align:center;
+    color:rgba(255,255,255,.7);
+    margin-top:10px;
+    margin-bottom:40px;
+}
+
+/* INPUT */
+
+.input-group-premium{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    top:50%;
+    left:20px;
+
+    transform:translateY(-50%);
+
+    color:#60a5fa;
+
+    z-index:10;
+}
+
+.premium-input{
+    width:100%;
+
+    height:64px;
+
+    border:none;
+    outline:none;
+
+    border-radius:20px;
+
+    padding-left:60px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:1rem;
+
+    transition:.3s;
+}
+
+.premium-input:focus{
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 0 0 4px rgba(59,130,246,.15);
+}
+
+.premium-input::placeholder{
+    color:rgba(255,255,255,.5);
+}
+
+/* BUTTON */
+
+.premium-register-btn{
+    height:64px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    color:white;
+
+    font-size:1.1rem;
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:
+    0 20px 40px rgba(59,130,246,.35);
+}
+
+.premium-register-btn:hover{
+    transform:translateY(-3px);
+    color:white;
+}
+
+/* LOGIN */
+
+.login-text{
+    text-align:center;
+    margin-top:30px;
+    color:rgba(255,255,255,.65);
+}
+
+.login-text a{
+    color:#60a5fa;
+    text-decoration:none;
+    font-weight:700;
+}
+
+/* MOBILE */
+
+@media(max-width:991px){
+
+.register-card{
+    padding:35px;
+}
+
+.hero-title{
+    font-size:3rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.register-card{
+    padding:28px;
+    border-radius:28px;
+}
+
+.register-title{
+    font-size:2rem;
+}
+
+.premium-input{
+    height:58px;
+}
+
+.premium-register-btn{
+    height:58px;
+}
+
+}
+
+</style>
+
+{% endblock %}
+```

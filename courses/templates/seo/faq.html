@@ -1,0 +1,1366 @@
+{% extends "base.html" %}
+
+{% block title %}
+SkillSprings | Premium Learning Platform
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= NAVBAR ================= -->
+
+ 
+
+<!-- ================= PAGE STYLES ================= -->
+
+<style>
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    padding-top:110px;
+
+    font-family:
+    Inter,
+    sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.hero-section{
+
+    position:relative;
+
+    padding:120px 0 100px;
+
+    overflow:hidden;
+}
+
+.hero-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.35;
+}
+
+.circle-one{
+
+    width:300px;
+
+    height:300px;
+
+    background:#2563eb;
+
+    top:-100px;
+
+    left:-100px;
+}
+
+.circle-two{
+
+    width:280px;
+
+    height:280px;
+
+    background:#14f1c7;
+
+    bottom:-100px;
+
+    right:-100px;
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#14f1c7;
+
+    font-weight:600;
+
+    margin-bottom:28px;
+}
+
+.hero-title{
+
+    font-size:5rem;
+
+    font-weight:900;
+
+    line-height:1.1;
+
+    margin-bottom:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #14f1c7
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-subtitle{
+
+    color:
+    rgba(255,255,255,.72);
+
+    font-size:1.15rem;
+
+    max-width:720px;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+}
+
+.hero-btn{
+
+    padding:15px 36px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.primary-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    color:white;
+
+    border:none;
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-3px);
+
+    color:white;
+}
+
+.secondary-btn{
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.04);
+}
+
+.secondary-btn:hover{
+
+    background:
+    rgba(255,255,255,.08);
+
+    color:white;
+}
+
+/* ================= GLASS CARD ================= */
+
+.glass-card{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(16px);
+
+    padding:40px;
+
+    transition:.4s;
+}
+
+.glass-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:
+    rgba(20,241,199,.35);
+}
+
+/* ================= FEATURES ================= */
+
+.section-title{
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    margin-bottom:18px;
+}
+
+.section-subtitle{
+
+    color:
+    rgba(255,255,255,.70);
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:1.8;
+}
+
+.feature-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+}
+
+.feature-title{
+
+    font-size:1.4rem;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+}
+
+.feature-text{
+
+    color:
+    rgba(255,255,255,.70);
+
+    line-height:1.8;
+}
+
+/* ================= STATS ================= */
+
+.stats-section{
+
+    padding:100px 0;
+}
+
+.stats-card{
+
+    text-align:center;
+}
+
+.stats-number{
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    color:#14f1c7;
+
+    margin-bottom:10px;
+}
+
+.stats-label{
+
+    color:
+    rgba(255,255,255,.70);
+
+    font-size:1rem;
+}
+
+/* ================= FAQ ================= */
+
+.accordion-item{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:24px !important;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+}
+
+.accordion-button{
+
+    background:transparent !important;
+
+    color:white !important;
+
+    font-weight:700;
+
+    padding:24px;
+}
+
+.accordion-button:focus{
+
+    box-shadow:none;
+}
+
+.accordion-button:not(.collapsed){
+
+    color:#14f1c7 !important;
+}
+
+.accordion-body{
+
+    color:
+    rgba(255,255,255,.72);
+
+    padding:0 24px 24px;
+
+    line-height:1.8;
+}
+
+/* ================= CTA ================= */
+
+.cta-section{
+
+    padding:120px 0;
+}
+
+.cta-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.20),
+        rgba(20,241,199,.10)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:40px;
+
+    padding:70px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+}
+
+.cta-title{
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    margin-bottom:22px;
+}
+
+.cta-text{
+
+    color:
+    rgba(255,255,255,.70);
+
+    margin-bottom:35px;
+
+    line-height:1.8;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    padding:50px 0 30px;
+
+    margin-top:80px;
+}
+
+.footer-link{
+
+    color:
+    rgba(255,255,255,.70);
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.footer-link:hover{
+
+    color:#14f1c7;
+}
+
+.footer-copy{
+
+    color:
+    rgba(255,255,255,.55);
+
+    margin-top:30px;
+}
+
+
+ 
+/* ================= NAVBAR ================= */
+
+.premium-navbar{
+
+    background:
+    rgba(8,12,30,.78);
+
+    backdrop-filter:blur(18px);    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+    padding:16px 0;
+
+    z-index:999;
+}
+
+.logo-box{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:800;
+
+    color:white;
+}
+
+.logo-text{
+
+    font-size:1.6rem;
+
+    font-weight:800;
+
+    color:white;
+}
+
+.nav-link{
+
+    color:
+    rgba(255,255,255,.75) !important;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.nav-link:hover{
+
+    color:white !important;
+
+    transform:translateY(-2px);
+}
+
+.nav-link.active{
+
+    color:#10b981 !important;
+}
+
+.profile-btn{
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    border-radius:50px;
+
+    padding:10px 24px;
+}
+
+.profile-dropdown{
+
+    background:#0f172a;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:10px;
+}
+
+.dropdown-item{
+
+    color:white;
+
+    border-radius:12px;
+
+    padding:10px 14px;
+}
+
+.dropdown-item:hover{
+
+    background:
+    rgba(255,255,255,.08);
+
+    color:#10b981;
+}
+
+.premium-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:700;
+}
+
+.premium-btn:hover{
+
+    color:white;
+}
+
+ 
+@media(max-width:991px){
+
+    .contact-title{
+
+        font-size:42px;
+    }
+
+    .contact-card{
+
+        padding:35px;
+    }
+}
+
+/* ================= NAVBAR ================= */
+
+.premium-navbar{
+
+    background:
+    rgba(8,12,30,.78);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+    padding:16px 0;
+
+    z-index:999;
+}
+ 
+
+
+ 
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:991px){
+
+    .hero-title{
+
+        font-size:3rem;
+    }
+
+    .section-title{
+
+        font-size:2.3rem;
+    }
+
+    .cta-title{
+
+        font-size:2rem;
+    }
+
+    .cta-box{
+
+        padding:45px 25px;
+    }
+
+    .glass-card{
+
+        padding:30px;
+    }
+}
+
+</style>
+ 
+<!-- ================= PREMIUM NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg fixed-top premium-navbar">
+
+    <div class="container">
+
+        <!-- LOGO -->
+
+        <a class="navbar-brand d-flex align-items-center" href="/">
+
+            <div class="logo-box">
+
+                ✦
+
+            </div>
+
+            <span class="logo-text ms-3">
+
+                SkillSprings
+
+            </span>
+
+        </a>
+
+        <!-- MOBILE TOGGLE -->
+
+        <button
+            class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- NAVIGATION -->
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
+            <ul class="navbar-nav mx-auto gap-lg-4 mt-4 mt-lg-0">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/#courses">
+
+                        Courses
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/about/">
+
+                        About
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/contact/">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link active" href="/faq/">
+
+                        FAQ
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="/privacy-policy/">
+
+                        Privacy
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- USER / LOGIN -->
+
+            {% if user.is_authenticated %}
+
+            <div class="dropdown mt-4 mt-lg-0">
+
+                <button
+                    class="btn profile-btn dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+
+                    👋 {{ user.username }}
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end profile-dropdown">
+
+                    <li>
+
+                        <a
+                            class="dropdown-item"
+                            href="/dashboard/"
+                        >
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    {% if user.is_superuser %}
+
+                    <li>
+
+                        <a
+                            class="dropdown-item"
+                            href="/admin/"
+                        >
+
+                            Django Admin
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+                    <li>
+
+                        <hr class="dropdown-divider">
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            class="dropdown-item text-danger"
+                            href="/accounts/logout/"
+                        >
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            {% else %}
+
+            <div class="d-flex gap-3 mt-4 mt-lg-0">
+
+                <a
+                    href="/login/"
+                    class="btn btn-outline-light rounded-pill px-4"
+                >
+
+                    Login
+
+                </a>
+
+                <a
+                    href="/register/"
+                    class="btn premium-btn rounded-pill px-4"
+                >
+
+                    Register
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- BOOTSTRAP JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+
+<!-- ================= HERO ================= -->
+
+<section class="hero-section">
+
+    <div class="hero-circle circle-one"></div>
+
+    <div class="hero-circle circle-two"></div>
+
+    <div class="container text-center">
+
+        <div class="hero-badge">
+
+            ✦ Modern EdTech Platform
+
+        </div>
+
+        <h1 class="hero-title">
+
+            Learn Future Skills
+            with SkillSprings
+
+        </h1>
+
+        <p class="hero-subtitle">
+
+            Premium online learning platform designed
+            for students and professionals to master
+            industry-ready skills through interactive
+            courses, quizzes, and certifications.
+        </p>
+
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+
+            <a href="/#courses" class="btn hero-btn primary-btn">
+
+                Explore Courses
+
+            </a>
+
+            <a href="/contact/" class="btn hero-btn secondary-btn">
+
+                Contact Us
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+
+                Why Choose SkillSprings?
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                Enterprise-level online learning experience
+                with premium UI, verified certificates,
+                and practical learning paths.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="glass-card h-100">
+
+                    <div class="feature-icon">
+
+                        🚀
+
+                    </div>
+
+                    <h3 class="feature-title">
+
+                        Industry Ready Courses
+
+                    </h3>
+
+                    <p class="feature-text">
+
+                        Learn modern technologies and
+                        practical skills aligned with
+                        current industry standards.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card h-100">
+
+                    <div class="feature-icon">
+
+                        🎓
+
+                    </div>
+
+                    <h3 class="feature-title">
+
+                        Verified Certificates
+
+                    </h3>
+
+                    <p class="feature-text">
+
+                        Receive secure and verifiable
+                        certificates after completing
+                        courses successfully.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card h-100">
+
+                    <div class="feature-icon">
+
+                        📱
+
+                    </div>
+
+                    <h3 class="feature-title">
+
+                        Mobile Friendly Learning
+
+                    </h3>
+
+                    <p class="feature-text">
+
+                        Access courses seamlessly on
+                        mobile, tablet, and desktop
+                        devices anywhere.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+
+                <div class="glass-card stats-card">
+
+                    <div class="stats-number">
+
+                        10K+
+
+                    </div>
+
+                    <div class="stats-label">
+
+                        Students
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="glass-card stats-card">
+
+                    <div class="stats-number">
+
+                        250+
+
+                    </div>
+
+                    <div class="stats-label">
+
+                        Courses
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="glass-card stats-card">
+
+                    <div class="stats-number">
+
+                        98%
+
+                    </div>
+
+                    <div class="stats-label">
+
+                        Satisfaction
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="glass-card stats-card">
+
+                    <div class="stats-number">
+
+                        24/7
+
+                    </div>
+
+                    <div class="stats-label">
+
+                        Support
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+
+                Frequently Asked Questions
+
+            </h2>
+
+        </div>
+
+        <div class="accordion" id="faqAccordion">
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq1"
+                    >
+
+                        How do I access purchased courses?
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="faq1"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#faqAccordion"
+                >
+
+                    <div class="accordion-body">
+
+                        Purchased courses automatically
+                        appear inside your dashboard
+                        after successful payment.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq2"
+                    >
+
+                        Will I receive a certificate?
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="faq2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                >
+
+                    <div class="accordion-body">
+
+                        Yes, verified certificates
+                        are generated after successful
+                        completion of courses.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2 class="cta-title">
+
+                Start Learning Today
+
+            </h2>
+
+            <p class="cta-text">
+
+                Join thousands of learners and build
+                your future-ready skills with SkillSprings.
+
+            </p>
+
+            <a
+                href="/#Courses"
+                class="btn hero-btn primary-btn"
+            >
+
+                Get Started
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4 mb-4">
+
+                <h4 class="fw-bold mb-3">
+
+                    SkillSprings
+
+                </h4>
+
+                <p class="text-white-50">
+
+                    Premium LMS platform for modern
+                    online education and career growth.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-2 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Quick Links
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/" class="footer-link">
+
+                        Home
+
+                    </a>
+
+                    <a href="/about/" class="footer-link">
+
+                        About
+
+                    </a>
+
+                    <a href="/contact/" class="footer-link">
+
+                        Contact
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Legal
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/privacy-policy/" class="footer-link">
+
+                        Privacy
+
+                    </a>
+
+                    <a href="/faq/" class="footer-link">
+
+                        FAQ
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center footer-copy">
+
+            © 2026 SkillSprings. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+
+
+{% endblock %}
+

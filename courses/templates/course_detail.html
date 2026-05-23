@@ -1,0 +1,821 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ course.title }} | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg premium-navbar fixed-top">
+
+    <div class="container-fluid px-lg-5 px-3">
+
+        <!-- LOGO -->
+
+        <a class="navbar-brand d-flex align-items-center"
+           href="/">
+
+            <div class="logo-box">
+
+                <i class="bi bi-mortarboard-fill"></i>
+
+            </div>
+
+            <span class="logo-text ms-3">
+
+                SkillSprings
+
+            </span>
+
+        </a>
+
+        <!-- MOBILE TOGGLE -->
+
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- NAV LINKS -->
+
+        <div class="collapse navbar-collapse"
+             id="navbarContent">
+
+            <ul class="navbar-nav mx-auto gap-lg-4 mt-4 mt-lg-0">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="/">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="/dashboard/">
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="#">
+
+                        Learning
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="/certificates/">
+
+                        Certificates
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- USER -->
+
+            {% if user.is_authenticated %}
+
+            <div class="dropdown mt-4 mt-lg-0">
+
+                <button class="btn profile-btn dropdown-toggle"
+                        data-bs-toggle="dropdown">
+
+                    <i class="bi bi-person-circle me-2"></i>
+
+                    {{ user.username }}
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end premium-dropdown">
+
+                    <li>
+
+                        <a class="dropdown-item"
+                           href="/dashboard/">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="dropdown-item"
+                           href="/accounts/logout/">
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- NAVBAR SPACE -->
+
+<div style="height:110px;"></div>
+
+<div class="course-page-wrapper">
+
+    <!-- BACKGROUND -->
+
+    <div class="page-glow glow-blue"></div>
+
+    <div class="page-glow glow-green"></div>
+
+    <div class="container-fluid px-lg-5 px-3 py-4">
+
+        <div class="row g-4">
+
+            <!-- ================= SIDEBAR ================= -->
+
+            <div class="col-lg-4">
+
+                <div class="premium-sidebar">
+
+                    <div class="course-badge">
+
+                        🚀 Premium Course
+
+                    </div>
+
+                    <h1 class="course-title mt-4">
+
+                        {{ course.title }}
+
+                    </h1>
+
+                    <p class="course-description">
+
+                        {{ course.description }}
+
+                    </p>
+
+                    <!-- PROGRESS -->
+
+                    <div class="progress-section">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span class="progress-label">
+
+                                Course Progress
+
+                            </span>
+
+                            <strong class="progress-percent">
+
+                                {{ progress }}%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="premium-progress">
+
+                            <div class="premium-progress-bar"
+                                 style="width: {{ progress }}%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- LESSONS -->
+
+                    <div class="lessons-wrapper mt-5">
+
+                        <div class="section-heading mb-4">
+
+                            <h4>
+
+                                Course Lessons
+
+                            </h4>
+
+                            <p>
+
+                                Learn step-by-step
+
+                            </p>
+
+                        </div>
+
+                        {% for lesson in lessons %}
+
+                        <a href="{% url 'course_detail' course.id %}?lesson={{ lesson.id }}"
+                           class="lesson-card
+                           {% if current_lesson and lesson.id == current_lesson.id %}
+                                active-lesson
+                           {% endif %}">
+
+                            <div class="lesson-left">
+
+                                <div class="lesson-icon">
+
+                                    {% if lesson.id in completed_lesson_ids %}
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    {% else %}
+
+                                    <i class="bi bi-play-circle-fill"></i>
+
+                                    {% endif %}
+
+                                </div>
+
+                                <div>
+
+                                    <h6 class="lesson-title">
+
+                                        {{ forloop.counter }}.
+                                        {{ lesson.title }}
+
+                                    </h6>
+
+                                    {% if lesson.duration %}
+
+                                    <p class="lesson-duration">
+
+                                        ⏱ {{ lesson.duration }}
+
+                                    </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                            {% if lesson.id in completed_lesson_ids %}
+
+                            <div class="done-badge">
+
+                                Done
+
+                            </div>
+
+                            {% endif %}
+
+                        </a>
+
+                        {% empty %}
+
+                        <div class="alert alert-info rounded-4">
+
+                            No lessons uploaded yet.
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= MAIN CONTENT ================= -->
+
+            <div class="col-lg-8">
+
+                <div class="premium-content">
+
+                    {% if current_lesson %}
+
+                    <div class="lesson-topbar">
+
+                        <div>
+
+                            <div class="current-badge">
+
+                                Current Lesson
+
+                            </div>
+
+                            <h2 class="current-lesson-title mt-3">
+
+                                {{ current_lesson.title }}
+
+                            </h2>
+
+                        </div>
+
+                        {% if current_lesson.id in completed_lesson_ids %}
+
+                        <div class="completed-pill">
+
+                            ✔ Completed
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if current_lesson.description %}
+
+                    <p class="current-description">
+
+                        {{ current_lesson.description }}
+
+                    </p>
+
+                    {% endif %}
+
+                    <!-- VIDEO -->
+
+                    {% if current_lesson.video %}
+
+                    <div class="video-wrapper">
+
+                        <video id="lessonVideo"
+                               controls
+                               class="premium-video">
+
+                            <source src="{{ current_lesson.video.url }}"
+                                    type="video/mp4">
+
+                        </video>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="alert alert-warning rounded-4">
+
+                        Video not uploaded yet.
+
+                    </div>
+
+                    {% endif %}
+
+                    <!-- COMPLETE BUTTON -->
+
+                    {% if current_lesson.id not in completed_lesson_ids %}
+
+                    <form method="POST"
+                          action="{% url 'complete_lesson' current_lesson.id %}"
+                          class="mt-4">
+
+                        {% csrf_token %}
+
+                        <button id="completeBtn"
+                                type="submit"
+                                class="btn complete-btn"
+                                disabled>
+
+                            Watch Full Video To Unlock
+
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                    {% else %}
+
+                    <div class="alert alert-info rounded-4">
+
+                        Add lessons to start learning.
+
+                    </div>
+
+                    {% endif %}
+
+                    <!-- QUIZ -->
+
+                    <div class="quiz-section mt-5">
+
+                        <div class="quiz-card">
+
+                            <div class="quiz-left">
+
+                                <div class="quiz-icon">
+
+                                    <i class="bi bi-patch-question-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h3 class="quiz-title">
+
+                                        Final Certification Quiz
+
+                                    </h3>
+
+                                    <p class="quiz-text">
+
+                                        Score at least
+                                        {{ pass_percentage }}%
+                                        to unlock your certificate.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                {% if quiz_ready and course.quiz_questions.count %}
+
+                                <a href="{% url 'course_quiz' course.id %}"
+                                   class="btn quiz-btn">
+
+                                    Take Quiz
+
+                                </a>
+
+                                {% else %}
+
+                                <button class="btn locked-btn" disabled>
+
+                                    Finish Lessons First
+
+                                </button>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- VIDEO SCRIPT -->
+
+<script>
+
+const video = document.getElementById("lessonVideo");
+
+const completeBtn = document.getElementById("completeBtn");
+
+if(video){
+
+    video.addEventListener("ended", function(){
+
+        if(completeBtn){
+
+            completeBtn.disabled = false;
+
+            completeBtn.innerText =
+            "Mark Lesson Complete";
+
+        }
+
+    });
+
+}
+
+</script>
+
+<!-- BOOTSTRAP JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+    font-family:'Segoe UI';
+}
+
+/* NAVBAR */
+
+.premium-navbar{
+    background:rgba(8,12,30,.72);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:18px 0;
+    z-index:999;
+}
+
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:1.2rem;
+}
+
+.logo-text{
+    font-size:1.8rem;
+    font-weight:900;
+    color:white;
+}
+
+.nav-link{
+    color:rgba(255,255,255,.72)!important;
+    font-weight:500;
+}
+
+.nav-link.active,
+.nav-link:hover{
+    color:white!important;
+}
+
+.profile-btn{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.06);
+    color:white;
+    padding:12px 22px;
+    border-radius:18px;
+}
+
+.premium-dropdown{
+    background:#0f172a;
+    border-radius:18px;
+}
+
+.premium-dropdown .dropdown-item{
+    color:white;
+}
+
+.premium-dropdown .dropdown-item:hover{
+    background:rgba(59,130,246,.15);
+}
+
+/* PAGE */
+
+.course-page-wrapper{
+    position:relative;
+    min-height:100vh;
+}
+
+.page-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.18;
+}
+
+.glow-blue{
+    width:400px;
+    height:400px;
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.glow-green{
+    width:350px;
+    height:350px;
+    background:#10b981;
+    bottom:-100px;
+    right:-100px;
+}
+
+/* SIDEBAR */
+
+.premium-sidebar{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:35px;
+    padding:35px;
+    backdrop-filter:blur(20px);
+    position:sticky;
+    top:120px;
+}
+
+.course-badge{
+    display:inline-block;
+    background:rgba(59,130,246,.15);
+    color:#60a5fa;
+    padding:12px 20px;
+    border-radius:50px;
+}
+
+.course-title{
+    font-size:2rem;
+    font-weight:900;
+}
+
+.course-description{
+    color:rgba(255,255,255,.7);
+}
+
+/* PROGRESS */
+
+.premium-progress{
+    width:100%;
+    height:10px;
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.premium-progress-bar{
+    height:100%;
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+}
+
+/* LESSON */
+
+.lesson-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px;
+    border-radius:22px;
+    background:rgba(255,255,255,.04);
+    margin-bottom:16px;
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.lesson-card:hover{
+    background:rgba(59,130,246,.12);
+}
+
+.active-lesson{
+    background:linear-gradient(
+    135deg,
+    rgba(59,130,246,.25),
+    rgba(16,185,129,.18)
+    );
+}
+
+.lesson-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.lesson-icon{
+    width:55px;
+    height:55px;
+    border-radius:18px;
+    background:rgba(59,130,246,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#60a5fa;
+}
+
+.done-badge{
+    background:#10b981;
+    padding:8px 14px;
+    border-radius:50px;
+}
+
+/* MAIN */
+
+.premium-content{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:35px;
+    padding:40px;
+    backdrop-filter:blur(20px);
+}
+
+.current-badge{
+    display:inline-block;
+    background:rgba(16,185,129,.15);
+    color:#34d399;
+    padding:10px 18px;
+    border-radius:50px;
+}
+
+.current-lesson-title{
+    font-size:2.3rem;
+    font-weight:900;
+}
+
+.current-description{
+    color:rgba(255,255,255,.7);
+}
+
+/* VIDEO */
+
+.premium-video{
+    width:100%;
+    border-radius:28px;
+    background:black;
+    max-height:550px;
+}
+
+/* BUTTON */
+
+.complete-btn{
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    border:none;
+    color:white;
+    padding:16px 28px;
+    border-radius:18px;
+    font-weight:700;
+}
+
+/* QUIZ */
+
+.quiz-card{
+    background:linear-gradient(
+    135deg,
+    rgba(59,130,246,.15),
+    rgba(16,185,129,.1)
+    );
+
+    border-radius:30px;
+    padding:35px;
+}
+
+.quiz-btn{
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:18px;
+}
+
+.locked-btn{
+    background:rgba(255,255,255,.08);
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:991px){
+
+.navbar-collapse{
+    background:#0f172a;
+    padding:25px;
+    border-radius:25px;
+    margin-top:20px;
+}
+
+.premium-sidebar{
+    position:relative;
+    top:0;
+}
+
+.current-lesson-title{
+    font-size:1.8rem;
+}
+
+}
+
+</style>
+
+{% endblock %}
+

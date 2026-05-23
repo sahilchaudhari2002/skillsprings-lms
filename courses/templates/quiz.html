@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz | {{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-xl-9">
+        <div class="surface-card p-4 p-lg-5">
+            <p class="text-uppercase text-muted small mb-2">Final assessment</p>
+            <h1 class="h3 mb-2">{{ course.title }} Quiz</h1>
+            <p class="text-muted">Score at least {{ pass_percentage }}% to unlock your certificate automatically in the dashboard.</p>
+
+            {% if questions %}
+                <form method="post">
+                    {% csrf_token %}
+                    {% for question in questions %}
+                        <div class="border rounded-4 p-4 mb-4">
+                            <h2 class="h5 mb-3">{{ forloop.counter }}. {{ question.question_text }}</h2>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}a" value="A" required>
+                                <label class="form-check-label" for="q{{ question.id }}a">{{ question.option_a }}</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}b" value="B">
+                                <label class="form-check-label" for="q{{ question.id }}b">{{ question.option_b }}</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}c" value="C">
+                                <label class="form-check-label" for="q{{ question.id }}c">{{ question.option_c }}</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}d" value="D">
+                                <label class="form-check-label" for="q{{ question.id }}d">{{ question.option_d }}</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button class="btn btn-brand btn-lg">Submit Quiz</button>
+                </form>
+            {% else %}
+                <div class="alert alert-info mb-0">Admin has not uploaded quiz questions for this course yet.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

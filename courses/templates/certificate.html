@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+@page{
+    size: A4 landscape;
+    margin:0;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background:#0f172a;
+}
+
+.certificate{
+
+    width:100%;
+    height:100vh;
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        135deg,
+        #06142b,
+        #0f172a,
+        #1e3a8a
+    );
+
+    overflow:hidden;
+}
+
+.inner{
+
+    position:absolute;
+
+    top:30px;
+    left:30px;
+    right:30px;
+    bottom:30px;
+
+    background:white;
+
+    border:8px solid #c9a227;
+
+    border-radius:18px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-sizing:border-box;
+}
+
+.watermark{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%, -50%)
+    rotate(-30deg);
+
+    font-size:110px;
+
+    color:rgba(30,58,138,0.05);
+
+    font-weight:bold;
+
+    z-index:0;
+}
+
+.logo{
+
+    font-size:55px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.tagline{
+
+    color:#555;
+
+    font-size:20px;
+
+    margin-top:5px;
+}
+
+.badges{
+
+    margin-top:25px;
+}
+
+.badge{
+
+    display:inline-block;
+
+    margin:0 10px;
+
+    padding:10px 20px;
+
+    border:2px solid #c9a227;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+}
+
+.title{
+
+    margin-top:40px;
+
+    font-size:75px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+
+    letter-spacing:4px;
+}
+
+.subtitle{
+
+    font-size:28px;
+
+    color:#c9a227;
+
+    margin-top:-10px;
+
+    letter-spacing:4px;
+}
+
+.presented{
+
+    margin-top:40px;
+
+    font-size:24px;
+
+    color:#555;
+}
+
+.name{
+
+    font-size:70px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+
+    margin-top:20px;
+
+    text-transform:uppercase;
+}
+
+.course{
+
+    margin-top:25px;
+
+    font-size:32px;
+
+    color:#1e3a8a;
+
+    font-weight:bold;
+}
+
+.desc{
+
+    margin-top:10px;
+
+    font-size:20px;
+
+    color:#444;
+}
+
+.score{
+
+    margin-top:30px;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#16a34a;
+}
+
+.id{
+
+    margin-top:10px;
+
+    font-size:16px;
+
+    color:#555;
+}
+
+.bottom{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.qr img{
+
+    width:120px;
+}
+
+.verify{
+
+    font-size:16px;
+
+    margin-top:10px;
+
+    color:#444;
+}
+
+.signature{
+
+    text-align:center;
+}
+
+.signature-line{
+
+    width:250px;
+
+    border-top:2px solid #999;
+
+    margin-bottom:10px;
+}
+
+.footer{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="certificate">
+
+<div class="inner">
+
+<div class="watermark">
+SKILLSPRINGS
+</div>
+
+<div class="logo">
+<span>S</span> SkillSprings
+</div>
+
+<div class="tagline">
+Professional Certification Learning Platform
+</div>
+
+<div class="badges">
+
+<div class="badge">
+✓ VERIFIED
+</div>
+
+<div class="badge">
+✓ INDUSTRY READY
+</div>
+
+<div class="badge">
+✓ LIFETIME VALID
+</div>
+
+</div>
+
+<div class="title">
+CERTIFICATE
+</div>
+
+<div class="subtitle">
+OF ACHIEVEMENT
+</div>
+
+<div class="presented">
+This certificate is proudly presented to
+</div>
+
+<div class="name">
+{{ student_name }}
+</div>
+
+<div class="course">
+{{ course.title }}
+</div>
+
+<div class="desc">
+has successfully completed the professional certification course
+and demonstrated industry-level competency.
+</div>
+
+<div class="score">
+FINAL SCORE : {{ result.score }}%
+</div>
+
+<div class="id">
+Certificate ID : {{ result.certificate_id }}
+</div>
+
+<div class="bottom">
+
+<div class="qr">
+
+<img src="data:image/png;base64,{{ qr_code }}">
+
+<div class="verify">
+Scan QR to verify certificate
+</div>
+
+</div>
+
+<div class="signature">
+
+<div style="font-size:45px;">
+✍
+</div>
+
+<div class="signature-line"></div>
+
+<div>
+AUTHORIZED SIGNATURE
+</div>
+
+<div style="margin-top:8px;color:#2563eb;font-weight:bold;">
+SkillSprings
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+SkillSprings • Learn Future Skills • Verified Digital Certificate
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

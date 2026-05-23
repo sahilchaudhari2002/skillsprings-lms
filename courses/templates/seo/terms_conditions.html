@@ -1,0 +1,702 @@
+ 
+{% extends "base.html" %}
+
+{% block title %}
+Terms & Conditions | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= NAVBAR ================= -->
+
+{% include "includes/navbar.html" %}
+
+<!-- ================= PAGE STYLE ================= -->
+
+<style>
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    padding-top:110px;
+
+    font-family:
+    Inter,
+    sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.terms-hero{
+
+    padding:110px 0 80px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.25;
+}
+
+.glow-left{
+
+    background:#2563eb;
+
+    top:-120px;
+
+    left:-120px;
+}
+
+.glow-right{
+
+    background:#14f1c7;
+
+    bottom:-120px;
+
+    right:-120px;
+}
+
+.terms-badge{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#14f1c7;
+
+    font-weight:600;
+
+    margin-bottom:28px;
+}
+
+.terms-title{
+
+    font-size:4.5rem;
+
+    font-weight:900;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #14f1c7
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.terms-subtitle{
+
+    max-width:780px;
+
+    margin:auto;
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.9;
+
+    font-size:1.1rem;
+}
+
+/* ================= CONTENT ================= */
+
+.terms-wrapper{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+.terms-card{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(18px);
+
+    padding:45px;
+
+    margin-bottom:30px;
+
+    transition:.4s;
+}
+
+.terms-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:
+    rgba(20,241,199,.30);
+}
+
+.terms-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+}
+
+.terms-card-title{
+
+    font-size:1.8rem;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+}
+
+.terms-text{
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.9;
+
+    font-size:1rem;
+}
+
+.terms-list{
+
+    margin-top:18px;
+
+    padding-left:18px;
+}
+
+.terms-list li{
+
+    margin-bottom:12px;
+
+    color:
+    rgba(255,255,255,.72);
+}
+
+/* ================= CTA ================= */
+
+.cta-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.20),
+        rgba(20,241,199,.10)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:35px;
+
+    padding:60px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+
+    margin-top:70px;
+}
+
+.cta-title{
+
+    font-size:2.8rem;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.cta-text{
+
+    color:
+    rgba(255,255,255,.72);
+
+    margin-bottom:30px;
+
+    line-height:1.8;
+}
+
+.contact-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:15px 36px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.contact-btn:hover{
+
+    transform:translateY(-3px);
+
+    color:white;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    padding:50px 0 25px;
+
+    margin-top:80px;
+}
+
+.footer-link{
+
+    color:
+    rgba(255,255,255,.68);
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.footer-link:hover{
+
+    color:#14f1c7;
+}
+
+.footer-copy{
+
+    color:
+    rgba(255,255,255,.50);
+
+    margin-top:35px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:991px){
+
+    .terms-title{
+
+        font-size:3rem;
+    }
+
+    .terms-card{
+
+        padding:30px;
+    }
+
+    .cta-box{
+
+        padding:40px 25px;
+    }
+
+    .cta-title{
+
+        font-size:2rem;
+    }
+}
+
+</style>
+
+<!-- ================= HERO ================= -->
+
+<section class="terms-hero">
+
+    <div class="hero-glow glow-left"></div>
+
+    <div class="hero-glow glow-right"></div>
+
+    <div class="container">
+
+        <div class="terms-badge">
+
+            ✦ Legal & Platform Policies
+
+        </div>
+
+        <h1 class="terms-title">
+
+            Terms & Conditions
+
+        </h1>
+
+        <p class="terms-subtitle">
+
+            By accessing and using SkillSprings,
+            you agree to comply with our platform policies,
+            payment terms, learning guidelines,
+            and community standards.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= TERMS CONTENT ================= -->
+
+<section class="terms-wrapper">
+
+    <div class="container">
+
+        <!-- SECTION 1 -->
+
+        <div class="terms-card">
+
+            <div class="terms-icon">
+
+                📘
+
+            </div>
+
+            <h2 class="terms-card-title">
+
+                Platform Usage
+
+            </h2>
+
+            <p class="terms-text">
+
+                Users must use SkillSprings responsibly
+                and follow all platform rules while accessing
+                courses, quizzes, certificates, and educational content.
+
+            </p>
+
+            <ul class="terms-list">
+
+                <li>No unauthorized account sharing</li>
+
+                <li>No misuse of course materials</li>
+
+                <li>Respect platform community guidelines</li>
+
+                <li>Maintain accurate account information</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 2 -->
+
+        <div class="terms-card">
+
+            <div class="terms-icon">
+
+                💳
+
+            </div>
+
+            <h2 class="terms-card-title">
+
+                Payments & Purchases
+
+            </h2>
+
+            <p class="terms-text">
+
+                All payments made through SkillSprings
+                are processed securely using Razorpay
+                and other trusted payment providers.
+
+            </p>
+
+            <ul class="terms-list">
+
+                <li>Course access starts after payment confirmation</li>
+
+                <li>Prices may change without prior notice</li>
+
+                <li>Duplicate transactions will be reviewed</li>
+
+                <li>Refund policy applies where eligible</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 3 -->
+
+        <div class="terms-card">
+
+            <div class="terms-icon">
+
+                🎓
+
+            </div>
+
+            <h2 class="terms-card-title">
+
+                Certificates & Learning Access
+
+            </h2>
+
+            <p class="terms-text">
+
+                Certificates are generated after successful
+                course completion and may be verified
+                through the SkillSprings platform.
+
+            </p>
+
+            <ul class="terms-list">
+
+                <li>Certificates are non-transferable</li>
+
+                <li>Course progress is monitored automatically</li>
+
+                <li>Lifetime access applies where mentioned</li>
+
+                <li>Fraudulent usage may result in account suspension</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 4 -->
+
+        <div class="terms-card">
+
+            <div class="terms-icon">
+
+                🔒
+
+            </div>
+
+            <h2 class="terms-card-title">
+
+                Privacy & Security
+
+            </h2>
+
+            <p class="terms-text">
+
+                User data is protected using secure
+                authentication systems and modern
+                security practices.
+
+            </p>
+
+            <ul class="terms-list">
+
+                <li>Secure login authentication</li>
+
+                <li>Protected payment processing</li>
+
+                <li>Encrypted user data storage</li>
+
+                <li>No unauthorized data sharing</li>
+
+            </ul>
+
+        </div>
+
+        <!-- CTA -->
+
+        <div class="cta-box">
+
+            <h2 class="cta-title">
+
+                Need More Information?
+
+            </h2>
+
+            <p class="cta-text">
+
+                Our support team is available to help you
+                regarding platform policies,
+                payments, and user agreements.
+
+            </p>
+
+            <a
+                href="/contact/"
+                class="btn contact-btn"
+            >
+
+                Contact Support
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4 mb-4">
+
+                <h4 class="fw-bold mb-3">
+
+                    SkillSprings
+
+                </h4>
+
+                <p class="text-white-50">
+
+                    Premium LMS platform for modern
+                    online learning and future-ready skills.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-2 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Quick Links
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/" class="footer-link">
+
+                        Home
+
+                    </a>
+
+                    <a href="/about/" class="footer-link">
+
+                        About
+
+                    </a>
+
+                    <a href="/contact/" class="footer-link">
+
+                        Contact
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Policies
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/privacy-policy/" class="footer-link">
+
+                        Privacy Policy
+
+                    </a>
+
+                    <a href="/refund-policy/" class="footer-link">
+
+                        Refund Policy
+
+                    </a>
+
+                    <a href="/faq/" class="footer-link">
+
+                        FAQ
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center footer-copy">
+
+            © 2026 SkillSprings. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}
+ 

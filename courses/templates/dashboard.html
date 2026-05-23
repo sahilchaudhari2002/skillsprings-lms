@@ -1,0 +1,1208 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | SkillSprings{% endblock %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo-section"  href="/">
+
+                <div class="logo-icon"  href="/">
+                    ✦
+                </div>
+
+                <div>
+                    <h3 class="logo-text"  href="/">
+                        SkillSprings
+                    </h3>
+                </div>
+
+            </div>
+
+            <div class="sidebar-menu mt-5">
+  
+                
+ <a href="/" class="menu-item ">
+    <div class="menu-icon-box">
+        <i class="bi bi-house-door-fill"></i>
+    </div>
+
+    <span>
+        Home
+    </span>
+</a>
+                <a href="/dashboard/" class="menu-item active">
+                    <i class="bi bi-grid-fill"></i>
+                    Dashboard
+                </a>
+
+                <a href="#courses" class="menu-item">
+                    <i class="bi bi-book-fill"></i>
+                    My Courses
+                </a>
+
+                <a href="#certificates" class="menu-item">
+                    <i class="bi bi-patch-check-fill"></i>
+                    Certificates
+                </a>
+
+                <a href="#payments" class="menu-item">
+                    <i class="bi bi-credit-card-fill"></i>
+                    Payments
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Analytics
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="bi bi-gear-fill"></i>
+                    Settings
+                </a>
+
+                <a href="/accounts/logout/" class="menu-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+
+            <div class="premium-badge">
+                🚀 Premium Student
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- ================= TOPBAR ================= -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h2 class="welcome-title">
+                    Welcome back, {{ user.username }} 👋
+                </h2>
+
+                <p class="welcome-subtitle">
+                    Continue your learning journey today.
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           placeholder="Search courses...">
+
+                </div>
+
+                <div class="notification-icon">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                </div>
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+                        {{ user.username|first|upper }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= HERO STATS ================= -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-glow glow-blue"></div>
+            <div class="hero-glow glow-green"></div>
+
+            <div class="row g-4 align-items-center">
+
+                <div class="col-lg-7">
+
+                    <div class="hero-card">
+
+                        <div class="hero-chip mb-4">
+
+                            🔥 Learning Streak: 14 Days
+
+                        </div>
+
+                        <h1 class="hero-title">
+
+                            Your Learning
+                            Analytics Dashboard
+
+                        </h1>
+
+                        <p class="hero-description">
+
+                            Track your learning performance, certificates,
+                            quiz progress, payments, and achievements in one premium dashboard.
+
+                        </p>
+
+                        <div class="d-flex gap-3 flex-wrap mt-4">
+
+                            <a href="#courses"
+                               class="btn premium-btn rounded-pill px-4 py-3">
+
+                                Continue Learning
+
+                            </a>
+
+                            <a href="#certificates"
+                               class="btn btn-outline-light rounded-pill px-4 py-3">
+
+                                My Certificates
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-5">
+
+                    <div class="row g-3">
+
+                        <div class="col-6">
+
+                            <div class="stats-card">
+
+                                <div class="stats-icon blue">
+                                    <i class="bi bi-book-fill"></i>
+                                </div>
+
+                                <h2>{{ enrollments|length }}</h2>
+
+                                <p>Total Courses</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="stats-card">
+
+                                <div class="stats-icon green">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                </div>
+
+                                <h2>{{ completed_count }}</h2>
+
+                                <p>Certificates</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="stats-card">
+
+                                <div class="stats-icon purple">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </div>
+
+                                <h2>{{ in_progress_count }}</h2>
+
+                                <p>In Progress</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="stats-card">
+
+                                <div class="stats-icon orange">
+                                    <i class="bi bi-award-fill"></i>
+                                </div>
+
+                                <h2>95%</h2>
+
+                                <p>Success Rate</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CHARTS ================= -->
+
+        <section class="mt-5">
+
+            <div class="row g-4">
+
+                <div class="col-lg-8">
+
+                    <div class="glass-card p-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div>
+
+                                <h4 class="mb-1">
+                                    Learning Progress
+                                </h4>
+
+                                <p class="text-muted small mb-0">
+                                    Weekly performance analytics
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <canvas id="progressChart"></canvas>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="glass-card p-4 h-100">
+
+                        <h4 class="mb-4">
+                            Quiz Performance
+                        </h4>
+
+                        <canvas id="quizChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= COURSES ================= -->
+
+        <section class="mt-5" id="courses">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h2 class="section-title">
+                        My Courses
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Continue learning your enrolled courses.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+
+                {% for enrollment in enrollments %}
+
+                <div class="col-lg-6">
+
+                    <div class="course-card">
+
+                        <div class="course-image-wrapper">
+
+                            <img src="{{ enrollment.course.image }}"
+                                 class="course-image"
+                                 alt="{{ enrollment.course.title }}">
+
+                            <div class="course-overlay"></div>
+
+                        </div>
+
+                        <div class="course-content">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                <span class="course-category">
+                                    Premium Course
+                                </span>
+
+                                <span class="rating-badge">
+                                    ⭐ 4.9
+                                </span>
+
+                            </div>
+
+                            <h3 class="course-title">
+
+                                {{ enrollment.course.title }}
+
+                            </h3>
+
+                            <p class="course-description">
+
+                                {{ enrollment.course.description|truncatechars:100 }}
+
+                            </p>
+
+                            <div class="d-flex justify-content-between small text-light opacity-75 mb-3">
+
+                                <span>
+                                    ⏱ {{ enrollment.course.duration }}
+                                </span>
+
+                                <span>
+                                    Progress {{ enrollment.progress }}%
+                                </span>
+
+                            </div>
+
+                            <div class="progress premium-progress mb-4">
+
+                                <div class="progress-bar"
+                                     style="width: {{ enrollment.progress }}%">
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex gap-2 flex-wrap">
+
+                                <a href="{% url 'course_detail' enrollment.course.id %}"
+                                   class="btn premium-btn rounded-pill px-4">
+
+                                    Continue
+
+                                </a>
+
+                                <a href="{% url 'course_quiz' enrollment.course.id %}"
+                                   class="btn btn-outline-light rounded-pill px-4">
+
+                                    Quiz
+
+                                </a>
+
+                                {% if enrollment.course_id in passed_course_ids %}
+
+                                <a href="{% url 'certificate' enrollment.course.id %}"
+                                   class="btn btn-success rounded-pill px-4">
+
+                                    Certificate
+
+                                </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <div class="col-12">
+
+                    <div class="glass-card p-5 text-center">
+
+                        <h4>No enrolled courses yet.</h4>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CERTIFICATES ================= -->
+
+        <section class="mt-5" id="certificates">
+
+            <div class="glass-card p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <div>
+
+                        <h2 class="section-title">
+                            Certificates
+                        </h2>
+
+                        <p class="section-subtitle">
+                            Download your earned certificates.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table premium-table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Course</th>
+                                <th>Score</th>
+                                <th>Status</th>
+                                <th>Certificate</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for result in results %}
+
+                            <tr>
+
+                                <td>{{ result.course.title }}</td>
+
+                                <td>{{ result.score }}%</td>
+
+                                <td>
+
+                                    {% if result.passed %}
+
+                                    <span class="badge bg-success rounded-pill px-3">
+
+                                        Unlocked
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-warning rounded-pill px-3">
+
+                                        Locked
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    {% if result.passed %}
+
+                                    <a href="{% url 'certificate' result.course.id %}"
+                                       class="btn premium-btn rounded-pill px-3">
+
+                                        Download
+
+                                    </a>
+
+                                    {% else %}
+
+                                    <span class="text-muted">
+
+                                        Need 60%+
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% empty %}
+
+                            <tr>
+
+                                <td colspan="4">
+
+                                    No quiz attempts yet.
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= PAYMENTS ================= -->
+
+        <section class="mt-5 mb-5" id="payments">
+
+            <div class="glass-card p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <div>
+
+                        <h2 class="section-title">
+                            Payment History
+                        </h2>
+
+                        <p class="section-subtitle">
+                            Your premium course transactions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table premium-table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Course</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for payment in payments %}
+
+                            <tr>
+
+                                <td>{{ payment.course.title }}</td>
+
+                                <td>Rs. {{ payment.amount }}</td>
+
+                                <td>
+
+                                    <span class="badge bg-info rounded-pill px-3">
+
+                                        {{ payment.status }}
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            {% empty %}
+
+                            <tr>
+
+                                <td colspan="3">
+
+                                    No payments found.
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= CHART JS ================= -->
+
+<script>
+
+const ctx = document.getElementById('progressChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Learning Progress',
+            data: [10, 25, 40, 55, 70, 82, 95],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59,130,246,.2)',
+            fill: true,
+            tension: .4
+        }]
+    }
+});
+
+const quizCtx = document.getElementById('quizChart');
+
+new Chart(quizCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Passed', 'Remaining'],
+        datasets: [{
+            data: [75, 25],
+            backgroundColor: ['#10b981', '#1e293b']
+        }]
+    }
+});
+
+</script>
+
+
+
+<style>
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+
+
+/* ================= LAYOUT ================= */
+
+.dashboard-wrapper{
+    display:flex;
+}
+
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:290px;
+    min-height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:rgba(15,23,42,.95);
+
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,.05);
+
+    padding:30px 20px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    z-index:999;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:1.3rem;
+    font-weight:700;
+
+    margin-right:15px;
+}
+
+.logo-text{
+    font-weight:800;
+}
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:16px 18px;
+
+    color:rgba(255,255,255,.75);
+
+    text-decoration:none;
+
+    border-radius:18px;
+
+    margin-bottom:10px;
+
+    transition:.3s;
+}
+
+.menu-item:hover,
+.menu-item.active{
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+    color:white;
+}
+
+.premium-badge{
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+
+    padding:15px;
+
+    border-radius:20px;
+
+    text-align:center;
+}
+
+
+
+/* ================= MAIN ================= */
+
+.main-content{
+    margin-left:290px;
+    width:100%;
+    padding:30px;
+}
+
+
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.welcome-title{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.welcome-subtitle{
+    color:rgba(255,255,255,.6);
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    padding:14px 18px;
+
+    border-radius:18px;
+}
+
+.search-box input{
+    background:none;
+    border:none;
+    outline:none;
+    color:white;
+}
+
+.notification-icon,
+.profile-avatar{
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+
+/* ================= HERO ================= */
+
+.hero-dashboard{
+    margin-top:40px;
+
+    background:
+    radial-gradient(circle at top left,#312e81 0%,transparent 35%),
+    linear-gradient(135deg,#0f172a,#111827);
+
+    border-radius:35px;
+
+    padding:50px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero-glow{
+    position:absolute;
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    opacity:.2;
+}
+
+.glow-blue{
+    background:#3b82f6;
+    top:-100px;
+    right:-100px;
+}
+
+.glow-green{
+    background:#10b981;
+    bottom:-100px;
+    left:-100px;
+}
+
+.hero-chip{
+    display:inline-block;
+
+    padding:12px 20px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.08);
+}
+
+.hero-title{
+    font-size:4rem;
+    font-weight:900;
+}
+
+.hero-description{
+    color:rgba(255,255,255,.7);
+    max-width:650px;
+}
+
+
+
+/* ================= STATS ================= */
+
+.stats-card{
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+}
+
+.stats-card:hover{
+    transform:translateY(-6px);
+}
+
+.stats-icon{
+    width:55px;
+    height:55px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:20px;
+}
+
+.stats-icon.blue{
+    background:#2563eb;
+}
+
+.stats-icon.green{
+    background:#10b981;
+}
+
+.stats-icon.purple{
+    background:#7c3aed;
+}
+
+.stats-icon.orange{
+    background:#ea580c;
+}
+
+
+
+/* ================= GLASS ================= */
+
+.glass-card{
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(15px);
+}
+
+
+
+/* ================= COURSE ================= */
+
+.course-card{
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.course-card:hover{
+    transform:translateY(-10px);
+}
+
+.course-image-wrapper{
+    position:relative;
+}
+
+.course-image{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.course-overlay{
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+}
+
+.course-content{
+    padding:30px;
+}
+
+.course-category{
+    color:#60a5fa;
+}
+
+.rating-badge{
+    color:#facc15;
+}
+
+.course-title{
+    font-weight:800;
+}
+
+.course-description{
+    color:rgba(255,255,255,.7);
+}
+
+.premium-progress{
+    height:8px;
+    background:rgba(255,255,255,.08);
+}
+
+.premium-progress .progress-bar{
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+}
+
+.premium-btn{
+    background:linear-gradient(135deg,#3b82f6,#10b981);
+
+    border:none;
+
+    color:white;
+}
+
+
+
+/* ================= TABLE ================= */
+
+.premium-table{
+    color:white;
+}
+
+.premium-table thead{
+    background:rgba(255,255,255,.05);
+}
+
+.premium-table td,
+.premium-table th{
+    border-color:rgba(255,255,255,.06);
+}
+
+
+
+/* ================= SECTION ================= */
+
+.section-title{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.section-subtitle{
+    color:rgba(255,255,255,.6);
+}
+
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+.sidebar{
+    width:240px;
+}
+
+.main-content{
+    margin-left:240px;
+}
+
+.hero-title{
+    font-size:3rem;
+}
+
+}
+
+@media(max-width:991px){
+
+.sidebar{
+    position:relative;
+    width:100%;
+    min-height:auto;
+}
+
+.dashboard-wrapper{
+    flex-direction:column;
+}
+
+.main-content{
+    margin-left:0;
+}
+
+.hero-title{
+    font-size:2.5rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.main-content{
+    padding:20px;
+}
+
+.hero-dashboard{
+    padding:30px;
+}
+
+.hero-title{
+    font-size:2rem;
+}
+
+.topbar{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.topbar-right{
+    width:100%;
+    justify-content:space-between;
+}
+
+.search-box{
+    width:100%;
+}
+
+.search-box input{
+    width:100%;
+}
+
+}
+
+</style>
+
+{% endblock %}
+```

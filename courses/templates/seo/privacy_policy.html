@@ -1,0 +1,580 @@
+ 
+{% extends "base.html" %}
+
+{% block title %}
+Privacy Policy | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<!-- NAVBAR -->
+
+{% include "includes/navbar.html" %}
+
+<!-- ================= PAGE STYLE ================= -->
+
+<style>
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    padding-top:110px;
+
+    font-family:
+    Inter,
+    sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.policy-hero{
+
+    padding:100px 0 70px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.25;
+}
+
+.glow-left{
+
+    background:#2563eb;
+
+    top:-120px;
+
+    left:-120px;
+}
+
+.glow-right{
+
+    background:#14f1c7;
+
+    bottom:-120px;
+
+    right:-120px;
+}
+
+.policy-badge{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#14f1c7;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.policy-title{
+
+    font-size:4rem;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #14f1c7
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.policy-subtitle{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+    font-size:1.1rem;
+}
+
+/* ================= CONTENT ================= */
+
+.policy-wrapper{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+.policy-card{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(16px);
+
+    padding:45px;
+
+    margin-bottom:30px;
+
+    transition:.4s;
+}
+
+.policy-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+    rgba(20,241,199,.25);
+}
+
+.policy-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+}
+
+.policy-heading{
+
+    font-size:1.8rem;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+}
+
+.policy-text{
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.9;
+
+    font-size:1rem;
+}
+
+/* ================= LIST ================= */
+
+.policy-list{
+
+    padding-left:18px;
+
+    margin-top:18px;
+}
+
+.policy-list li{
+
+    margin-bottom:12px;
+
+    color:
+    rgba(255,255,255,.72);
+}
+
+/* ================= CTA ================= */
+
+.policy-cta{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.20),
+        rgba(20,241,199,.10)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:35px;
+
+    padding:60px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+
+    margin-top:60px;
+}
+
+.policy-cta h2{
+
+    font-size:2.5rem;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.policy-cta p{
+
+    color:
+    rgba(255,255,255,.72);
+
+    margin-bottom:30px;
+}
+
+.contact-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.contact-btn:hover{
+
+    transform:translateY(-3px);
+
+    color:white;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    padding:40px 0 20px;
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,.55);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:991px){
+
+    .policy-title{
+
+        font-size:2.8rem;
+    }
+
+    .policy-card{
+
+        padding:30px;
+    }
+
+    .policy-cta{
+
+        padding:40px 25px;
+    }
+
+    .policy-cta h2{
+
+        font-size:2rem;
+    }
+}
+
+</style>
+
+<!-- ================= HERO ================= -->
+
+<section class="policy-hero">
+
+    <div class="hero-glow glow-left"></div>
+
+    <div class="hero-glow glow-right"></div>
+
+    <div class="container">
+
+        <div class="policy-badge">
+
+            ✦ Privacy & Security
+
+        </div>
+
+        <h1 class="policy-title">
+
+            Privacy Policy
+
+        </h1>
+
+        <p class="policy-subtitle">
+
+            Your privacy and data security are important to us.
+            SkillSprings is committed to protecting your personal
+            information and maintaining complete transparency
+            regarding how your data is collected and used.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= POLICY CONTENT ================= -->
+
+<section class="policy-wrapper">
+
+    <div class="container">
+
+        <!-- SECTION 1 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                🔒
+
+            </div>
+
+            <h2 class="policy-heading">
+
+                Information We Collect
+
+            </h2>
+
+            <p class="policy-text">
+
+                We collect only the necessary information required
+                to provide learning services, course access,
+                payment processing, and certification generation.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>Full Name</li>
+
+                <li>Email Address</li>
+
+                <li>Mobile Number</li>
+
+                <li>Course Enrollment Details</li>
+
+                <li>Payment Information</li>
+
+                <li>Learning Progress & Certificates</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 2 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                💳
+
+            </div>
+
+            <h2 class="policy-heading">
+
+                Payment Security
+
+            </h2>
+
+            <p class="policy-text">
+
+                All payments are processed securely using Razorpay.
+                SkillSprings does not store any sensitive card or banking information.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>Secure SSL Encryption</li>
+
+                <li>Protected Razorpay Gateway</li>
+
+                <li>Fraud Prevention Systems</li>
+
+                <li>PCI-DSS Compliant Processing</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 3 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                🛡️
+
+            </div>
+
+            <h2 class="policy-heading">
+
+                Data Protection
+
+            </h2>
+
+            <p class="policy-text">
+
+                Your information is protected using modern security
+                practices and secure server infrastructure.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>Encrypted User Authentication</li>
+
+                <li>Protected Database Access</li>
+
+                <li>Secure Cloud Hosting</li>
+
+                <li>Regular Security Monitoring</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 4 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                🚫
+
+            </div>
+
+            <h2 class="policy-heading">
+
+                No Third-Party Selling
+
+            </h2>
+
+            <p class="policy-text">
+
+                SkillSprings never sells, rents, or shares
+                your personal data with unauthorized third parties.
+                Your trust and privacy are our priority.
+
+            </p>
+
+        </div>
+
+        <!-- CTA -->
+
+        <div class="policy-cta">
+
+            <h2>
+
+                Questions About Privacy?
+
+            </h2>
+
+            <p>
+
+                If you have any questions regarding our privacy policy,
+                feel free to contact our support team.
+
+            </p>
+
+            <a
+                href="/contact/"
+                class="btn contact-btn"
+            >
+
+                Contact Support
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        © 2026 SkillSprings. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+{% endblock %}
+ 

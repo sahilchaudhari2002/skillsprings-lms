@@ -1,0 +1,59 @@
+ 
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <div class="col-lg-3">
+
+        <div class="card p-4 bg-dark rounded-4">
+
+            <h2>{{ total_users }}</h2>
+
+            <p>Total Users</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card p-4 bg-dark rounded-4">
+
+            <h2>{{ total_courses }}</h2>
+
+            <p>Total Courses</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card p-4 bg-dark rounded-4">
+
+            <h2>{{ total_enrollments }}</h2>
+
+            <p>Total Enrollments</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card p-4 bg-dark rounded-4">
+
+            <h2>₹{{ total_revenue }}</h2>
+
+            <p>Revenue</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+ 

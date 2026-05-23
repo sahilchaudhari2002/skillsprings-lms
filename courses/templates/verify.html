@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Certificate Verification{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="surface-card p-4 p-lg-5 text-center">
+            <span class="badge text-bg-success mb-3">Certificate verified</span>
+            <h1 class="h3 mb-3">This certificate is valid.</h1>
+            <p class="mb-1"><strong>Student:</strong> {{ result.user.username }}</p>
+            <p class="mb-1"><strong>Course:</strong> {{ result.course.title }}</p>
+            <p class="mb-1"><strong>Score:</strong> {{ result.score }}%</p>
+            <p class="mb-0"><strong>Certificate ID:</strong> {{ result.certificate_id }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,610 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}
+Login | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="login-page">
+
+    <!-- BACKGROUND GLOW -->
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <div class="container-fluid px-lg-5 px-3">
+
+        <div class="row min-vh-100 align-items-center">
+
+            <!-- LEFT SIDE -->
+
+            <div class="col-lg-6 d-none d-lg-block">
+
+                <div class="hero-side">
+
+                    <div class="premium-badge">
+
+                        🚀 Premium Learning Platform
+
+                    </div>
+
+                    <h1 class="hero-title mt-4">
+
+                        Learn Future Skills
+                        With SkillSprings
+
+                    </h1>
+
+                    <p class="hero-text mt-4">
+
+                        Professional certification platform
+                        with premium video learning,
+                        quizzes, certificates,
+                        and industry-ready courses.
+
+                    </p>
+
+                    <!-- FLOATING CARDS -->
+
+                    <div class="floating-card card-1">
+
+                        <i class="bi bi-award-fill"></i>
+
+                        <div>
+                            <strong>10K+</strong>
+                            <p>Students</p>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-card card-2">
+
+                        <i class="bi bi-journal-code"></i>
+
+                        <div>
+                            <strong>500+</strong>
+                            <p>Courses</p>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-card card-3">
+
+                        <i class="bi bi-patch-check-fill"></i>
+
+                        <div>
+                            <strong>95%</strong>
+                            <p>Success Rate</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div class="col-lg-6">
+
+                <div class="login-wrapper">
+
+                    <div class="login-card">
+
+                        <!-- LOGO -->
+
+                        <div class="logo-wrapper">
+
+                            <div class="logo-box">
+
+                                <i class="bi bi-mortarboard-fill"></i>
+
+                            </div>
+
+                        </div>
+
+                        <h2 class="login-title">
+
+                            Welcome Back
+
+                        </h2>
+
+                        <p class="login-subtitle">
+
+                            Login to continue your learning journey
+
+                        </p>
+
+                        <!-- FORM -->
+
+                        <form method="post">
+
+                            {% csrf_token %}
+
+                            {% if next %}
+
+                                <input type="hidden"
+                                       name="next"
+                                       value="{{ next }}">
+
+                            {% endif %}
+
+                            <!-- USERNAME -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                </span>
+
+                                <input type="text"
+                                       name="username"
+                                       class="premium-input"
+                                       placeholder="Enter username"
+                                       required>
+
+                            </div>
+
+                            <!-- PASSWORD -->
+
+                            <div class="input-group-premium mb-4">
+
+                                <span class="input-icon">
+
+                                    <i class="bi bi-lock-fill"></i>
+
+                                </span>
+
+                                <input type="password"
+                                       name="password"
+                                       class="premium-input"
+                                       placeholder="Enter password"
+                                       required>
+
+                            </div>
+
+                            <!-- ERRORS -->
+
+                            {% if form.errors %}
+
+                            <div class="alert premium-alert mb-4">
+
+                                Invalid username or password.
+
+                            </div>
+
+                            {% endif %}
+
+                            <!-- BUTTON -->
+
+ <!-- FORGOT PASSWORD -->
+
+<div class="d-flex justify-content-end mb-4">
+
+    <a href="{% url 'forgot_password' %}">
+
+        Forgot Password?
+
+    </a>
+
+</div>
+
+<!-- BUTTON -->
+
+<button class="btn premium-login-btn w-100">
+
+    Login Now
+
+</button>
+
+                        </form>
+
+                        <!-- REGISTER -->
+
+                        <div class="register-text">
+
+                            New here?
+
+                            <a href="{% url 'register' %}">
+
+                                Create Account
+
+                            </a>
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+body{
+    background:#050816;
+    overflow-x:hidden;
+    font-family:'Segoe UI';
+}
+
+/* PAGE */
+
+.login-page{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#065f46 0%,transparent 30%),
+    linear-gradient(135deg,#050816,#0f172a);
+}
+
+/* GLOW */
+
+.bg-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.22;
+}
+
+.glow-1{
+    width:400px;
+    height:400px;
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.glow-2{
+    width:350px;
+    height:350px;
+    background:#10b981;
+    bottom:-100px;
+    right:-100px;
+}
+
+.glow-3{
+    width:250px;
+    height:250px;
+    background:#8b5cf6;
+    top:40%;
+    left:40%;
+}
+
+/* LEFT SIDE */
+
+.hero-side{
+    position:relative;
+    padding-right:60px;
+}
+
+.premium-badge{
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    backdrop-filter:blur(10px);
+}
+
+.hero-title{
+    font-size:5rem;
+    font-weight:900;
+    line-height:1.1;
+    color:white;
+}
+
+.hero-text{
+    color:rgba(255,255,255,.7);
+    font-size:1.2rem;
+    line-height:1.8;
+}
+
+/* FLOATING CARDS */
+
+.floating-card{
+    position:absolute;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    padding:18px 22px;
+
+    border-radius:24px;
+
+    color:white;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+}
+
+.floating-card i{
+    font-size:1.5rem;
+    color:#60a5fa;
+}
+
+.floating-card p{
+    margin:0;
+    color:rgba(255,255,255,.7);
+}
+
+.card-1{
+    top:120px;
+    right:40px;
+}
+
+.card-2{
+    top:260px;
+    left:60px;
+}
+
+.card-3{
+    bottom:80px;
+    right:120px;
+}
+
+/* LOGIN */
+
+.login-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.login-card{
+    width:100%;
+    max-width:520px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    border-radius:40px;
+
+    padding:50px;
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.35);
+}
+
+/* LOGO */
+
+.logo-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.logo-box{
+    width:90px;
+    height:90px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:2rem;
+
+    box-shadow:
+    0 20px 50px rgba(59,130,246,.35);
+}
+
+/* TEXT */
+
+.login-title{
+    text-align:center;
+    color:white;
+    font-size:2.7rem;
+    font-weight:900;
+}
+
+.login-subtitle{
+    text-align:center;
+    color:rgba(255,255,255,.7);
+    margin-top:10px;
+    margin-bottom:40px;
+}
+
+/* INPUT */
+
+.input-group-premium{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    top:50%;
+    left:20px;
+
+    transform:translateY(-50%);
+
+    color:#60a5fa;
+
+    z-index:10;
+}
+
+.premium-input{
+    width:100%;
+
+    height:64px;
+
+    border:none;
+    outline:none;
+
+    border-radius:20px;
+
+    padding-left:60px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:1rem;
+
+    transition:.3s;
+}
+
+.premium-input:focus{
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 0 0 4px rgba(59,130,246,.15);
+}
+
+.premium-input::placeholder{
+    color:rgba(255,255,255,.5);
+}
+
+/* BUTTON */
+
+.premium-login-btn{
+    height:64px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    color:white;
+
+    font-size:1.1rem;
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:
+    0 20px 40px rgba(59,130,246,.35);
+}
+
+.premium-login-btn:hover{
+    transform:translateY(-3px);
+    color:white;
+}
+
+/* ALERT */
+
+.premium-alert{
+    background:rgba(239,68,68,.12);
+
+    border:1px solid rgba(239,68,68,.25);
+
+    color:#fca5a5;
+
+    border-radius:18px;
+}
+
+/* REGISTER */
+
+.register-text{
+    text-align:center;
+    margin-top:30px;
+    color:rgba(255,255,255,.65);
+}
+
+.register-text a{
+    color:#60a5fa;
+    text-decoration:none;
+    font-weight:700;
+}
+.forgot-link{
+    color:#60a5fa;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.forgot-link:hover{
+    color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:991px){
+
+.login-card{
+    padding:35px;
+}
+
+.hero-title{
+    font-size:3rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.login-card{
+    padding:28px;
+    border-radius:28px;
+}
+
+.login-title{
+    font-size:2rem;
+}
+
+.premium-input{
+    height:58px;
+}
+
+.premium-login-btn{
+    height:58px;
+}
+
+}
+
+</style>
+
+{% endblock %}
+```

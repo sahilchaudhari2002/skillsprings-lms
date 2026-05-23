@@ -1,0 +1,947 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}
+{{ course.title }} | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="course-page-wrapper">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="page-glow glow-blue"></div>
+    <div class="page-glow glow-green"></div>
+
+    <div class="container-fluid px-lg-5 px-3 py-5">
+
+        <div class="row g-4">
+
+            <!-- ================= SIDEBAR ================= -->
+
+            <div class="col-lg-4">
+
+                <div class="premium-sidebar">
+
+                    <div class="sidebar-header">
+
+                        <div class="course-badge">
+
+                            🚀 Premium Course
+
+                        </div>
+
+                        <h1 class="course-title mt-4">
+
+                            {{ course.title }}
+
+                        </h1>
+
+                        <p class="course-description">
+
+                            {{ course.description }}
+
+                        </p>
+
+                    </div>
+
+                    <!-- PROGRESS -->
+
+                    <div class="progress-section">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span class="progress-label">
+                                Course Progress
+                            </span>
+
+                            <strong class="progress-percent">
+                                {{ progress }}%
+                            </strong>
+
+                        </div>
+
+                        <div class="premium-progress">
+
+                            <div class="premium-progress-bar"
+                                 style="width: {{ progress }}%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- LESSONS -->
+
+                    <div class="lessons-wrapper mt-5">
+
+                        <div class="section-heading mb-4">
+
+                            <h4>
+                                Course Lessons
+                            </h4>
+
+                            <p>
+                                Learn step-by-step
+                            </p>
+
+                        </div>
+
+                        {% for lesson in lessons %}
+
+                        <a href="{% url 'course_detail' course.id %}?lesson={{ lesson.id %}"
+                           class="lesson-card
+                           {% if current_lesson and lesson.id == current_lesson.id %}
+                                active-lesson
+                           {% endif %}">
+
+                            <div class="lesson-left">
+
+                                <div class="lesson-icon">
+
+                                    {% if lesson.id in completed_lesson_ids %}
+
+                                        <i class="bi bi-check-circle-fill"></i>
+
+                                    {% else %}
+
+                                        <i class="bi bi-play-circle-fill"></i>
+
+                                    {% endif %}
+
+                                </div>
+
+                                <div>
+
+                                    <h6 class="lesson-title">
+
+                                        {{ forloop.counter }}.
+                                        {{ lesson.title }}
+
+                                    </h6>
+
+                                    {% if lesson.duration %}
+
+                                    <p class="lesson-duration">
+
+                                        ⏱ {{ lesson.duration }}
+
+                                    </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                            {% if lesson.id in completed_lesson_ids %}
+
+                            <div class="done-badge">
+
+                                Done
+
+                            </div>
+
+                            {% endif %}
+
+                        </a>
+
+                        {% empty %}
+
+                        <div class="alert alert-info rounded-4">
+
+                            No lessons uploaded yet.
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= MAIN CONTENT ================= -->
+
+            <div class="col-lg-8">
+
+                <div class="premium-content">
+
+                    {% if current_lesson %}
+
+                    <!-- TITLE -->
+
+                    <div class="lesson-topbar">
+
+                        <div>
+
+                            <div class="current-badge">
+
+                                Current Lesson
+
+                            </div>
+
+                            <h2 class="current-lesson-title mt-3">
+
+                                {{ current_lesson.title }}
+
+                            </h2>
+
+                        </div>
+
+                        {% if current_lesson.id in completed_lesson_ids %}
+
+                        <div class="completed-pill">
+
+                            ✔ Completed
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+
+                    {% if current_lesson.description %}
+
+                    <p class="current-description">
+
+                        {{ current_lesson.description }}
+
+                    </p>
+
+                    {% endif %}
+
+                    <!-- VIDEO -->
+
+                    {% if current_lesson.video %}
+
+                    <div class="video-wrapper">
+
+                        <video id="lessonVideo"
+                               controls
+                               class="premium-video">
+
+                            <source src="{{ current_lesson.video.url }}"
+                                    type="video/mp4">
+
+                        </video>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="alert alert-warning rounded-4">
+
+                        Video not uploaded yet.
+
+                    </div>
+
+                    {% endif %}
+
+                    <!-- COMPLETE BUTTON -->
+
+                    {% if current_lesson.id not in completed_lesson_ids %}
+
+                    <form method="POST"
+                          action="{% url 'complete_lesson' current_lesson.id %}"
+                          id="completeForm"
+                          class="mt-4">
+
+                        {% csrf_token %}
+
+                        <button id="completeBtn"
+                                type="submit"
+                                class="btn complete-btn"
+                                disabled>
+
+                            Watch Full Video To Unlock
+
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                    {% else %}
+
+                    <div class="alert alert-info rounded-4">
+
+                        Add lessons to start learning.
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <!-- ================= QUIZ ================= -->
+
+                    <div class="quiz-section mt-5">
+
+                        <div class="quiz-card">
+
+                            <div class="quiz-left">
+
+                                <div class="quiz-icon">
+
+                                    <i class="bi bi-patch-question-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h3 class="quiz-title">
+
+                                        Final Certification Quiz
+
+                                    </h3>
+
+                                    <p class="quiz-text">
+
+                                        Score at least
+                                        {{ pass_percentage }}%
+                                        to unlock your certificate.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                {% if quiz_ready and course.quiz_questions.count %}
+
+                                <a href="{% url 'course_quiz' course.id %}"
+                                   class="btn quiz-btn">
+
+                                    Take Quiz
+
+                                </a>
+
+                                {% else %}
+
+                                <button class="btn locked-btn" disabled>
+
+                                    Finish Lessons First
+
+                                </button>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ================= RESULT ================= -->
+
+                    {% if result %}
+
+                    <div class="result-card mt-4">
+
+                        {% if result.passed %}
+
+                        <div class="result-success">
+
+                            <div class="result-icon">
+
+                                🏆
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+
+                                    Congratulations!
+
+                                </h4>
+
+                                <p>
+
+                                    You scored
+                                    {{ result.score }}%
+                                    and unlocked your certificate.
+
+                                </p>
+
+                                <a href="{% url 'certificate' course.id %}"
+                                   class="btn certificate-btn mt-2">
+
+                                    Download Certificate
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        {% else %}
+
+                        <div class="result-warning">
+
+                            <div class="result-icon">
+
+                                ⚠
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+
+                                    Quiz Not Passed
+
+                                </h4>
+
+                                <p>
+
+                                    You scored
+                                    {{ result.score }}%.
+                                    Minimum required:
+                                    {{ pass_percentage }}%
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- VIDEO COMPLETE SCRIPT -->
+
+<script>
+
+const video = document.getElementById("lessonVideo");
+
+const completeBtn = document.getElementById("completeBtn");
+
+if(video){
+
+    video.addEventListener("ended", function(){
+
+        completeBtn.disabled = false;
+
+        completeBtn.innerText =
+        "Mark Lesson Complete";
+
+    });
+
+}
+
+</script>
+
+
+
+<style>
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+
+
+/* BACKGROUND */
+
+.course-page-wrapper{
+    position:relative;
+    min-height:100vh;
+}
+
+.page-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.18;
+}
+
+.glow-blue{
+    width:400px;
+    height:400px;
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.glow-green{
+    width:350px;
+    height:350px;
+    background:#10b981;
+    bottom:-100px;
+    right:-100px;
+}
+
+
+
+/* SIDEBAR */
+
+.premium-sidebar{
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    backdrop-filter:blur(20px);
+
+    position:sticky;
+    top:100px;
+}
+
+.course-badge{
+    display:inline-block;
+
+    background:rgba(59,130,246,.15);
+
+    color:#60a5fa;
+
+    padding:12px 20px;
+
+    border-radius:50px;
+
+    font-weight:600;
+}
+
+.course-title{
+    font-size:2.2rem;
+    font-weight:900;
+}
+
+.course-description{
+    color:rgba(255,255,255,.7);
+    line-height:1.8;
+}
+
+
+
+/* PROGRESS */
+
+.progress-section{
+    margin-top:35px;
+}
+
+.progress-label{
+    color:rgba(255,255,255,.75);
+}
+
+.progress-percent{
+    color:#34d399;
+}
+
+.premium-progress{
+    width:100%;
+    height:10px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.premium-progress-bar{
+    height:100%;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    border-radius:20px;
+}
+
+
+
+/* LESSONS */
+
+.section-heading h4{
+    font-weight:800;
+}
+
+.section-heading p{
+    color:rgba(255,255,255,.6);
+}
+
+.lesson-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    margin-bottom:16px;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.35s;
+}
+
+.lesson-card:hover{
+    transform:translateY(-4px);
+    background:rgba(59,130,246,.1);
+}
+
+.active-lesson{
+    background:linear-gradient(
+        135deg,
+        rgba(59,130,246,.25),
+        rgba(16,185,129,.18)
+    );
+}
+
+.lesson-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.lesson-icon{
+    width:55px;
+    height:55px;
+
+    border-radius:18px;
+
+    background:rgba(59,130,246,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#60a5fa;
+
+    font-size:1.2rem;
+}
+
+.lesson-title{
+    margin:0;
+    font-weight:700;
+}
+
+.lesson-duration{
+    margin:0;
+    color:rgba(255,255,255,.6);
+    font-size:.9rem;
+}
+
+.done-badge{
+    background:#10b981;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:.8rem;
+}
+
+
+
+/* MAIN */
+
+.premium-content{
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:35px;
+
+    padding:40px;
+
+    backdrop-filter:blur(20px);
+}
+
+.lesson-topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.current-badge{
+    display:inline-block;
+
+    background:rgba(16,185,129,.15);
+
+    color:#34d399;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    font-size:.9rem;
+}
+
+.current-lesson-title{
+    font-size:2.4rem;
+    font-weight:900;
+}
+
+.completed-pill{
+    background:#10b981;
+    padding:10px 18px;
+    border-radius:50px;
+}
+
+.current-description{
+    color:rgba(255,255,255,.7);
+    line-height:1.9;
+}
+
+
+
+/* VIDEO */
+
+.video-wrapper{
+    margin-top:30px;
+}
+
+.premium-video{
+    width:100%;
+    border-radius:28px;
+    background:black;
+    max-height:550px;
+}
+
+
+
+/* BUTTON */
+
+.complete-btn{
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    border:none;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:18px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 20px 40px rgba(59,130,246,.35);
+}
+
+.complete-btn:disabled{
+    opacity:.7;
+}
+
+
+
+/* QUIZ */
+
+.quiz-card{
+    background:linear-gradient(
+        135deg,
+        rgba(59,130,246,.15),
+        rgba(16,185,129,.1)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.quiz-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.quiz-icon{
+    width:70px;
+    height:70px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.08);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:1.5rem;
+}
+
+.quiz-title{
+    font-weight:800;
+}
+
+.quiz-text{
+    color:rgba(255,255,255,.7);
+    margin:0;
+}
+
+.quiz-btn{
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #10b981
+    );
+
+    border:none;
+
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:18px;
+
+    font-weight:700;
+}
+
+.locked-btn{
+    background:rgba(255,255,255,.08);
+    border:none;
+    color:white;
+    padding:14px 28px;
+    border-radius:18px;
+}
+
+
+
+/* RESULT */
+
+.result-card{
+    border-radius:28px;
+    padding:30px;
+}
+
+.result-success{
+    background:rgba(16,185,129,.12);
+
+    border:1px solid rgba(16,185,129,.25);
+
+    border-radius:28px;
+
+    padding:30px;
+
+    display:flex;
+    gap:20px;
+}
+
+.result-warning{
+    background:rgba(234,179,8,.12);
+
+    border:1px solid rgba(234,179,8,.25);
+
+    border-radius:28px;
+
+    padding:30px;
+
+    display:flex;
+    gap:20px;
+}
+
+.result-icon{
+    font-size:2rem;
+}
+
+.certificate-btn{
+    background:#10b981;
+    border:none;
+    color:white;
+    border-radius:16px;
+    padding:12px 22px;
+}
+
+
+
+/* RESPONSIVE */
+
+@media(max-width:991px){
+
+.premium-sidebar{
+    position:relative;
+    top:0;
+}
+
+.current-lesson-title{
+    font-size:2rem;
+}
+
+.lesson-topbar{
+    flex-direction:column;
+}
+
+}
+
+@media(max-width:768px){
+
+.premium-content,
+.premium-sidebar{
+    padding:25px;
+}
+
+.course-title{
+    font-size:1.8rem;
+}
+
+.current-lesson-title{
+    font-size:1.6rem;
+}
+
+.quiz-card{
+    padding:25px;
+}
+
+}
+
+</style>
+
+{% endblock %}
+```

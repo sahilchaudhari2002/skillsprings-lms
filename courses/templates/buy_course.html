@@ -1,0 +1,574 @@
+ 
+{% extends "base.html" %}
+
+{% block title %}
+Buy {{ course.title }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+}
+
+.checkout-wrapper{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:60px 20px;
+}
+
+.checkout-card{
+
+    width:100%;
+
+    max-width:1200px;
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(25px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 0 50px rgba(37,99,235,.2);
+}
+
+.course-image{
+
+    height:100%;
+
+    min-height:650px;
+
+    object-fit:cover;
+}
+
+.left-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(2,6,23,.8),
+        rgba(2,6,23,.2)
+    );
+}
+
+.course-badge{
+
+    background:
+    rgba(255,255,255,.1);
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+    backdrop-filter:blur(10px);
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    color:white;
+
+    font-size:14px;
+}
+
+.checkout-content{
+
+    padding:60px;
+}
+
+.course-title{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:white;
+
+    line-height:1.2;
+}
+
+.price-card{
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:24px;
+}
+
+.price{
+
+    font-size:48px;
+
+    font-weight:900;
+
+    color:#10b981;
+}
+
+.feature-item{
+
+    background:
+    rgba(255,255,255,.04);
+
+    border-radius:16px;
+
+    padding:14px 18px;
+
+    margin-bottom:14px;
+
+    color:#d1d5db;
+}
+
+.pay-btn{
+
+    height:65px;
+
+    border:none;
+
+    border-radius:18px;
+
+    width:100%;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #10b981
+    );
+
+    transition:.4s;
+}
+
+.pay-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.4);
+}
+
+.back-btn{
+
+    height:55px;
+
+    border-radius:16px;
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:white;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+
+    background:
+    rgba(255,255,255,.1);
+
+    color:white;
+}
+
+.secure-badge{
+
+    background:
+    rgba(16,185,129,.1);
+
+    color:#10b981;
+
+    border:
+    1px solid rgba(16,185,129,.2);
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.glow-circle{
+
+    position:absolute;
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    z-index:-1;
+}
+
+.glow1{
+
+    top:-100px;
+
+    left:-100px;
+
+    background:#2563eb;
+}
+
+.glow2{
+
+    bottom:-120px;
+
+    right:-120px;
+
+    background:#10b981;
+}
+
+</style>
+
+<div class="checkout-wrapper">
+
+    <div class="glow-circle glow1"></div>
+
+    <div class="glow-circle glow2"></div>
+
+    <div class="checkout-card">
+
+        <div class="row g-0">
+
+            <!-- LEFT SIDE -->
+
+            <div class="col-lg-5 position-relative">
+
+                <img
+                    src="{{ course.image }}"
+                    alt="{{ course.title }}"
+                    class="w-100 course-image"
+                >
+
+                <div class="left-overlay"></div>
+
+                <div class="position-absolute bottom-0 start-0 p-5 text-white">
+
+                    <div class="course-badge mb-4">
+
+                        Premium Certification Course
+
+                    </div>
+
+                    <h2 class="fw-bold mb-3">
+
+                        Learn Future-Ready Skills
+
+                    </h2>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Get lifetime access, premium learning resources,
+                        quizzes, and industry-recognized certificates.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div class="col-lg-7">
+
+                <div class="checkout-content">
+
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+
+                        <div class="secure-badge">
+
+                            🔒 Secure Razorpay Checkout
+
+                        </div>
+
+                        <a
+                            href="/"
+                            class="back-btn px-4"
+                        >
+
+                            ← Back
+
+                        </a>
+
+                    </div>
+
+                    <p class="text-uppercase text-info fw-bold small">
+
+                        SkillSprings Checkout
+
+                    </p>
+
+                    <h1 class="course-title mb-4">
+
+                        {{ course.title }}
+
+                    </h1>
+
+                    <p class="text-light opacity-75 mb-5">
+
+                        {{ course.description }}
+
+                    </p>
+
+                    <!-- FEATURES -->
+
+                    <div class="row mb-5">
+
+                        <div class="col-md-6">
+
+                            <div class="feature-item">
+
+                                🎓 Verified Certificate
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="feature-item">
+
+                                📚 Lifetime Access
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="feature-item">
+
+                                🧠 Quiz & Assessments
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="feature-item">
+
+                                📱 Mobile Friendly
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PRICE -->
+
+                    <div class="price-card mb-5">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <p class="text-light opacity-75 mb-2">
+
+                                    Total Course Price
+
+                                </p>
+
+                                <div class="price">
+
+                                    ₹ {{ course.price }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="text-end">
+
+                                <div class="badge bg-success p-2">
+
+                                    100% Secure
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PAYMENT BUTTON -->
+
+                    {% if payment %}
+
+                    <button
+                        id="pay-btn"
+                        class="pay-btn"
+                    >
+
+                        🚀 Pay Securely with Razorpay
+
+                    </button>
+
+                    <p class="text-light opacity-50 mt-4 small">
+
+                        By continuing, you agree to our Terms &
+                        Privacy Policy. Your payment is securely
+                        processed by Razorpay.
+
+                    </p>
+
+                    {% else %}
+
+                    <div class="alert alert-warning rounded-4">
+
+                        Razorpay checkout could not be initialized.
+
+                        {% if payment_error %}
+
+                            <br>
+
+                            <small>
+
+                                {{ payment_error }}
+
+                            </small>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+{% if payment %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+const options = {
+
+    key: "{{ razorpay_key }}",
+
+    amount: "{{ payment.amount }}",
+
+    currency: "INR",
+
+    name: "SkillSprings",
+
+    description: "{{ course.title|escapejs }}",
+
+    order_id: "{{ payment.id }}",
+
+    image: "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
+
+    handler: function (response) {
+
+        const successUrl =
+
+            "{% url 'payment_success' course.id %}?payment_id="
+
+            + encodeURIComponent(response.razorpay_payment_id)
+
+            + "&order_id="
+
+            + encodeURIComponent(response.razorpay_order_id)
+
+            + "&signature="
+
+            + encodeURIComponent(response.razorpay_signature);
+
+        window.location.href = successUrl;
+    },
+
+    theme: {
+
+        color: "#2563eb"
+    }
+};
+
+const razorpay = new Razorpay(options);
+
+document.getElementById(
+    "pay-btn"
+).addEventListener(
+
+    "click",
+
+    function (event) {
+
+        event.preventDefault();
+
+        razorpay.open();
+    }
+);
+
+</script>
+
+{% endif %}
+
+{% endblock %}
+ 

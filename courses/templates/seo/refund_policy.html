@@ -1,0 +1,690 @@
+ 
+{% extends "base.html" %}
+
+{% block title %}
+Refund Policy | SkillSprings
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= NAVBAR ================= -->
+
+{% include "includes/navbar.html" %}
+
+<!-- ================= PAGE STYLE ================= -->
+
+<style>
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    padding-top:110px;
+
+    font-family:
+    Inter,
+    sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.refund-hero{
+
+    padding:110px 0 80px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.25;
+}
+
+.glow-left{
+
+    background:#2563eb;
+
+    top:-120px;
+
+    left:-120px;
+}
+
+.glow-right{
+
+    background:#14f1c7;
+
+    bottom:-120px;
+
+    right:-120px;
+}
+
+.refund-badge{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#14f1c7;
+
+    font-weight:600;
+
+    margin-bottom:28px;
+}
+
+.refund-title{
+
+    font-size:4.5rem;
+
+    font-weight:900;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #14f1c7
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.refund-subtitle{
+
+    max-width:780px;
+
+    margin:auto;
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.9;
+
+    font-size:1.1rem;
+}
+
+/* ================= POLICY SECTION ================= */
+
+.policy-wrapper{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+.policy-card{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(18px);
+
+    padding:45px;
+
+    margin-bottom:30px;
+
+    transition:.4s;
+}
+
+.policy-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:
+    rgba(20,241,199,.30);
+}
+
+.policy-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+}
+
+.policy-title-card{
+
+    font-size:1.8rem;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+}
+
+.policy-text{
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.9;
+
+    font-size:1rem;
+}
+
+.policy-list{
+
+    margin-top:18px;
+
+    padding-left:18px;
+}
+
+.policy-list li{
+
+    margin-bottom:12px;
+
+    color:
+    rgba(255,255,255,.72);
+}
+
+/* ================= CTA ================= */
+
+.cta-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.20),
+        rgba(20,241,199,.10)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:35px;
+
+    padding:60px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+
+    margin-top:70px;
+}
+
+.cta-title{
+
+    font-size:2.8rem;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.cta-text{
+
+    color:
+    rgba(255,255,255,.72);
+
+    margin-bottom:30px;
+
+    line-height:1.8;
+}
+
+.contact-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #14f1c7
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:15px 36px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.contact-btn:hover{
+
+    transform:translateY(-3px);
+
+    color:white;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    padding:50px 0 25px;
+
+    margin-top:80px;
+}
+
+.footer-link{
+
+    color:
+    rgba(255,255,255,.68);
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.footer-link:hover{
+
+    color:#14f1c7;
+}
+
+.footer-copy{
+
+    color:
+    rgba(255,255,255,.50);
+
+    margin-top:35px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:991px){
+
+    .refund-title{
+
+        font-size:3rem;
+    }
+
+    .policy-card{
+
+        padding:30px;
+    }
+
+    .cta-box{
+
+        padding:40px 25px;
+    }
+
+    .cta-title{
+
+        font-size:2rem;
+    }
+}
+
+</style>
+
+<!-- ================= HERO ================= -->
+
+<section class="refund-hero">
+
+    <div class="hero-glow glow-left"></div>
+
+    <div class="hero-glow glow-right"></div>
+
+    <div class="container">
+
+        <div class="refund-badge">
+
+            ✦ Secure Refund & Payment Policy
+
+        </div>
+
+        <h1 class="refund-title">
+
+            Refund Policy
+
+        </h1>
+
+        <p class="refund-subtitle">
+
+            SkillSprings is committed to maintaining
+            a transparent and fair refund process.
+            Please review our refund terms carefully
+            before purchasing any digital courses or services.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= POLICY CONTENT ================= -->
+
+<section class="policy-wrapper">
+
+    <div class="container">
+
+        <!-- SECTION 1 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                💳
+
+            </div>
+
+            <h2 class="policy-title-card">
+
+                Eligibility for Refunds
+
+            </h2>
+
+            <p class="policy-text">
+
+                Refund requests are reviewed individually.
+                Users may request refunds within the eligible
+                refund period after course purchase.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>Refund request must be genuine</li>
+
+                <li>Duplicate transactions are refundable</li>
+
+                <li>Technical issues may qualify for refunds</li>
+
+                <li>Requests are reviewed within 7 business days</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 2 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                📚
+
+            </div>
+
+            <h2 class="policy-title-card">
+
+                Non-Refundable Digital Products
+
+            </h2>
+
+            <p class="policy-text">
+
+                Since SkillSprings provides instant digital access,
+                certain purchases may become non-refundable
+                after significant course consumption.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>Downloaded course materials</li>
+
+                <li>Completed course modules</li>
+
+                <li>Issued certificates</li>
+
+                <li>Lifetime access activated courses</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 3 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                🔐
+
+            </div>
+
+            <h2 class="policy-title-card">
+
+                Payment Gateway Policy
+
+            </h2>
+
+            <p class="policy-text">
+
+                All payments are processed securely using Razorpay.
+                SkillSprings does not store any sensitive
+                banking or card details.
+
+            </p>
+
+            <ul class="policy-list">
+
+                <li>SSL encrypted transactions</li>
+
+                <li>Secure payment processing</li>
+
+                <li>Protected Razorpay checkout</li>
+
+                <li>PCI-compliant infrastructure</li>
+
+            </ul>
+
+        </div>
+
+        <!-- SECTION 4 -->
+
+        <div class="policy-card">
+
+            <div class="policy-icon">
+
+                ⏳
+
+            </div>
+
+            <h2 class="policy-title-card">
+
+                Refund Timeline
+
+            </h2>
+
+            <p class="policy-text">
+
+                Approved refunds are generally processed
+                within 7 to 10 business days depending
+                on the payment provider and bank processing time.
+
+            </p>
+
+        </div>
+
+        <!-- CTA -->
+
+        <div class="cta-box">
+
+            <h2 class="cta-title">
+
+                Need Refund Assistance?
+
+            </h2>
+
+            <p class="cta-text">
+
+                Our support team is available to help you
+                with refund requests, payment concerns,
+                and transaction-related queries.
+
+            </p>
+
+            <a
+                href="/contact/"
+                class="btn contact-btn"
+            >
+
+                Contact Support
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4 mb-4">
+
+                <h4 class="fw-bold mb-3">
+
+                    SkillSprings
+
+                </h4>
+
+                <p class="text-white-50">
+
+                    Premium LMS platform for modern
+                    online education and future-ready learning.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-2 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Quick Links
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/" class="footer-link">
+
+                        Home
+
+                    </a>
+
+                    <a href="/about/" class="footer-link">
+
+                        About
+
+                    </a>
+
+                    <a href="/contact/" class="footer-link">
+
+                        Contact
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-6 mb-4">
+
+                <h6 class="fw-bold mb-3">
+
+                    Policies
+
+                </h6>
+
+                <div class="d-flex flex-column gap-2">
+
+                    <a href="/privacy-policy/" class="footer-link">
+
+                        Privacy Policy
+
+                    </a>
+
+                    <a href="/refund-policy/" class="footer-link">
+
+                        Refund Policy
+
+                    </a>
+
+                    <a href="/faq/" class="footer-link">
+
+                        FAQ
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center footer-copy">
+
+            © 2026 SkillSprings. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}
+
